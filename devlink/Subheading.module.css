@@ -1,0 +1,31 @@
+.subheading_wrap {
+  display: block;
+  font-size: 0.875rem;
+}
+
+.subheading {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+
+  border-radius: 0.25rem;
+
+  background-color: var(--background-color--background-pale);
+
+  line-height: 1;
+  font-weight: 500;
+}
+
+.subheading:where(.w-variant-2eb44b9f-2cbc-e55a-3787-8eab485b597a) {
+  background-color: #2f3131;
+  color: var(--text-color--text-light);
+}
+
+@media screen and (max-width: 767px) {
+  .subheading {
+    font-size: 0.875rem;
+  }
+}

@@ -1,0 +1,73 @@
+@media screen and (max-width: 991px) {
+  .component_blurb_card {
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .component_blurb_card {
+    text-align: center;
+  }
+}
+
+.spacer-large {
+  padding-top: 3rem;
+}
+
+@media screen and (max-width: 991px) {
+  .spacer-large {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .spacer-large {
+    padding-top: 1.5rem;
+  }
+}
+
+.heading-style-h5 {
+  font-size: var(--_typography---heading-size--text-size-h5);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.heading-style-h5.text-weight-medium {
+  font-weight: 600;
+}
+
+.text-weight-medium {
+  font-weight: 500;
+}
+
+.spacer-xsmall {
+  width: 100%;
+  padding-top: 0.5rem;
+}
+
+@media screen and (max-width: 991px) {
+  .hide-tablet {
+    display: none;
+  }
+}
+
+.text-size-small {
+  font-size: 0.875rem;
+}
+
+.text-weight-semibold {
+  font-weight: 600;
+}
+
+.text-style-italic {
+  font-style: italic;
+}
+
+.text-color-grey {
+  color: hsla(0, 0.00%, 100.00%, 0.40);
+}
+
+.text-color-muted {
+  color: hsla(0, 0.00%, 0.00%, 0.50);
+}

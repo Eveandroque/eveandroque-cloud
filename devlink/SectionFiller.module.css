@@ -1,0 +1,50 @@
+.component_filler_section {
+  width: 100%;
+  max-width: 120rem;
+  margin-right: auto;
+  margin-left: auto;
+  padding: 3.125rem;
+}
+
+.component_filler_block {
+  padding: 5rem;
+  border: 1px dashed black;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+@media screen and (max-width: 479px) {
+  .text-align-center.mb_pd_1 {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.spacer-medium {
+  width: 100%;
+  padding-top: 2rem;
+}
+
+@media screen and (max-width: 991px) {
+  .spacer-medium {
+    padding-top: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .spacer-medium {
+    padding-top: 1.25rem;
+  }
+}
+
+.text-size-large {
+  font-size: 1.5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .text-size-large {
+    font-size: 1.25rem;
+  }
+}

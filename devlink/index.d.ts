@@ -1,0 +1,55 @@
+"use client";
+
+console.warn(
+  "⚠️ Avoid importing components from 'index.js' for better performance. This practice is deprecated and may be removed in the future."
+);
+
+export * as _Builtin from "./_Builtin";
+export * from "./Accordion";
+export * from "./AmenitiesCard";
+export * from "./AmenitiesComp";
+export * from "./Badge";
+export * from "./Banner";
+export * from "./Blurb";
+export * from "./CallToAction";
+export * from "./DetailCardWithIcon";
+export * from "./devlink";
+export * from "./devlinkContext";
+export * from "./DevLinkProvider";
+export * from "./DropdownWithIcon";
+export * from "./Faq";
+export * from "./FilterComp";
+export * from "./Footer";
+export * from "./GlobalStyles";
+export * from "./Header";
+export * from "./Hero";
+export * from "./HiwImgComp";
+export * from "./HowItWorksSection";
+export * from "./Instafeed";
+export * from "./interactions";
+export * from "./LocationTab";
+export * from "./MainFilterComp";
+export * from "./Marquee";
+export * from "./MultiLoaded";
+export * from "./Navbar";
+export * from "./PopupComp";
+export * from "./PropertyCard";
+export * from "./PropertyListings";
+export * from "./PropListingComp";
+export * from "./SectionFiller";
+export * from "./SimpleCard";
+export * from "./SimpleSingleColumnedSection";
+export * from "./StepsCard";
+export * from "./Subheading";
+export * from "./TabLink";
+export * from "./Tags";
+export * from "./Team";
+export * from "./TeamCard";
+export * from "./utils";
+export * from "./values/Boolean/every";
+export * from "./values/Boolean/some";
+export * from "./values/Builtin/formatNumber";
+export * from "./values/Conditionals/conditional";
+export * from "./values/Conditions/applyPredicate";
+export * from "./values/Enum/isAny";
+export * from "./values/Enum/isNotAny";

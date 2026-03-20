@@ -1,0 +1,12 @@
+import * as React from "react";
+import * as Types from "./types";
+
+declare function DetailCardWithIcon(props: {
+  as?: React.ElementType;
+  mediaImage?: Types.Asset.Image;
+  contentHeading?: React.ReactNode;
+  contentDescription?: React.ReactNode;
+  contentLinkText?: React.ReactNode;
+  contentLink?: Types.Basic.Link;
+  visibility?: Types.Visibility.VisibilityConditions;
+}): React.JSX.Element;

@@ -1,0 +1,304 @@
+.component_instagram_section {
+  padding-bottom: 0rem;
+}
+
+.padding-section-large {
+  padding-top: 5rem;
+  padding-bottom: var(--_spacing---section-large);
+}
+
+@media screen and (max-width: 991px) {
+  .padding-section-large {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .padding-section-large {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.padding-global {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .padding-global {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .padding-global {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.container-large {
+  width: 100%;
+  max-width: 86rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-large.p-rel {
+  position: relative;
+}
+
+.p-rel {
+  position: relative;
+}
+
+.text-align-center {
+  text-align: center;
+}
+
+@media screen and (max-width: 479px) {
+  .text-align-center.mb_pd_1 {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.text-weight-medium {
+  font-weight: 500;
+}
+
+.text-color-alternate {
+  color: var(--text-color--text-alternate);
+}
+
+.heading-style-h6 {
+  font-size: var(--_typography---heading-size--text-size-h6);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 479px) {
+  .text-weight-medium.mb-tx-14px {
+    font-size: 0.875rem;
+  }
+}
+
+.text-family-secondary {
+  font-family: var(--_font-family---font-secondary);
+  font-style: italic;
+}
+
+.text-family-secondary._w-500 {
+  font-weight: 500;
+}
+
+._w-500 {
+  font-weight: 500;
+}
+
+.text-family-secondary.text-change-wrap {
+  display: inline-block;
+}
+
+.spacer-medium {
+  width: 100%;
+  padding-top: 2rem;
+}
+
+@media screen and (max-width: 991px) {
+  .spacer-medium {
+    padding-top: 1.5rem;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .spacer-medium {
+    padding-top: 1.25rem;
+  }
+}
+
+.container-full {
+  width: 100%;
+  max-width: 90rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+@media screen and (min-width: 1920px) {
+  .container-full {
+    max-width: 120rem;
+  }
+}
+
+.component_instagram_wrap {
+  position: relative;
+
+  display: flex;
+  overflow: hidden;
+  padding-bottom: 0rem;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+.component_instagram_swiper.swiper {
+  width: 100%;
+}
+
+.component_instagram_card-wrap {
+  width: 100%;
+  height: 100%;
+}
+
+.component_instagram_image {
+  width: 100%;
+  height: 100%;
+  min-height: 20rem;
+  object-fit: cover;
+}
+
+.component_instagram_nav_list {
+  position: absolute;
+  left: 0px;
+  right: 0px;
+
+  display: flex;
+  padding-right: 2rem;
+  padding-left: 2rem;
+  justify-content: space-between;
+}
+
+@media screen and (max-width: 479px) {
+  .component_instagram_nav_list {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.component_instagram_nav {
+  display: flex;
+  width: 100%;
+  max-width: 4rem;
+  min-height: 4rem;
+  justify-content: center;
+  align-items: center;
+
+  border-radius: 100%;
+
+  background-color: rgba(255, 255, 255, 0.6);
+
+  backdrop-filter: blur(1.75rem);
+
+  transition: filter 300ms ease;
+
+  line-height: 1;
+}
+
+.component_instagram_nav:hover {
+  filter: invert(100%);
+}
+
+@media screen and (max-width: 991px) {
+  .component_instagram_nav {
+    max-width: 2.5rem;
+    min-height: 2.5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .component_instagram_nav {
+    max-width: 2rem;
+    min-height: 2rem;
+  }
+}
+
+.component_instagram_nav.swiper-button-prev {
+  width: 4rem;
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 479px) {
+  .component_instagram_nav.swiper-button-prev {
+    width: 2rem;
+  }
+}
+
+.component_instagram_nav.swiper-button-next {
+  width: 4rem;
+  flex: 0 0 auto;
+}
+
+@media screen and (max-width: 991px) {
+  .component_instagram_nav-icon {
+    width: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .component_instagram_nav-icon {
+    width: 1rem;
+  }
+}
+
+.hide {
+  display: none;
+}
+
+.component_instagram_cta {
+  position: absolute;
+  left: 0%;
+  top: auto;
+  right: 0%;
+  bottom: 50%;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+
+  transform: translate(0px, 50%);
+}
+
+@media screen and (max-width: 479px) {
+  .component_instagram_cta {
+    bottom: 8%;
+  }
+}
+
+.subheading_wrap {
+  display: block;
+  font-size: 0.875rem;
+}
+
+.subheading {
+  display: flex;
+  padding: 0.5rem 0.75rem;
+  justify-content: flex-start;
+  align-items: center;
+  grid-column-gap: 0.5rem;
+  grid-row-gap: 0.5rem;
+
+  border-radius: 0.25rem;
+
+  background-color: var(--background-color--background-pale);
+
+  line-height: 1;
+  font-weight: 500;
+}
+
+.subheading:where(.w-variant-2eb44b9f-2cbc-e55a-3787-8eab485b597a) {
+  background-color: #2f3131;
+  color: var(--text-color--text-light);
+}
+
+@media screen and (max-width: 767px) {
+  .subheading {
+    font-size: 0.875rem;
+  }
+}
+
+.subheading-muted {
+  color: grey;
+}

@@ -1,0 +1,140 @@
+.padding-small {
+  padding: 1rem;
+}
+
+.padding-global {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+
+@media screen and (max-width: 767px) {
+  .padding-global {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .padding-global {
+    padding-right: 1rem;
+    padding-left: 1rem;
+  }
+}
+
+.padding-section-large {
+  padding-top: 5rem;
+  padding-bottom: var(--_spacing---section-large);
+}
+
+@media screen and (max-width: 991px) {
+  .padding-section-large {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+  }
+}
+
+@media screen and (max-width: 479px) {
+  .padding-section-large {
+    padding-top: 4rem;
+    padding-bottom: 4rem;
+  }
+}
+
+.container-large {
+  width: 100%;
+  max-width: 86rem;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.container-large.p-rel {
+  position: relative;
+}
+
+.p-rel {
+  position: relative;
+}
+
+.component_marquee_wrap-box {
+  display: flex;
+  overflow: hidden;
+  align-items: center;
+  grid-column-gap: 1.5rem;
+  grid-row-gap: 1.5rem;
+}
+
+@media screen and (max-width: 767px) {
+  .component_marquee_wrap-box {
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+  }
+}
+
+.component_marquee_wrap-item.is-heading {
+  flex: 0 0 auto;
+}
+
+.component_marquee_heading_wrap {
+  max-width: 13.75rem;
+}
+
+@media screen and (max-width: 767px) {
+  .component_marquee_heading_wrap {
+    max-width: 100%;
+    text-align: center;
+  }
+}
+
+.heading-style-h5 {
+  font-size: var(--_typography---heading-size--text-size-h5);
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.heading-style-h5.text-weight-medium {
+  font-weight: 600;
+}
+
+.text-weight-medium {
+  font-weight: 500;
+}
+
+.component_marquee_track {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  grid-column-gap: 5rem;
+  grid-row-gap: 5rem;
+}
+
+.marquee-fadeblock {
+  position: absolute;
+  z-index: 5;
+  width: 3rem;
+  height: 100%;
+  background-image: linear-gradient(90deg, hsla(0, 0.00%, 100.00%, 1.00), hsla(0, 0.00%, 100.00%, 0.00));
+}
+
+.marquee-fadeblock.left {
+  background-image: linear-gradient(90deg, hsla(0, 0.00%, 100.00%, 1.00), hsla(0, 0.00%, 100.00%, 0.00));
+}
+
+.component_marquee_list {
+  display: flex;
+  align-items: center;
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: auto;
+  grid-column-gap: 5rem;
+  grid-row-gap: 5rem;
+
+  animation: marqueeLoop 60s linear infinite;
+}
+
+.component_marquee_logo {
+  max-height: 2rem;
+  max-width: 5rem;
+  flex: 0 0 auto;
+  object-fit: contain;
+}
