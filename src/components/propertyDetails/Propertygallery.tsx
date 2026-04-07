@@ -1,8 +1,14 @@
 // src/components/property/PropertyGallery.tsx
-// React island (client:load) — handles modal state
+// React island (client:load) — handles modal + swiper lightbox state
 
-import React, {useState, useEffect, useCallback} from 'react';
+import React, {useState, useEffect} from 'react';
+import {Swiper, SwiperSlide} from 'swiper/react';
+import {Navigation, Keyboard, Pagination} from 'swiper/modules';
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
 import type {PropertyImage} from './types';
+import ImageSwiper from './ImageSwiper';
 
 interface PropertyGalleryProps {
     thumbnail: string;
@@ -12,62 +18,87 @@ interface PropertyGalleryProps {
 
 export function PropertyGallery({thumbnail, imageUrls, name}: PropertyGalleryProps) {
     const [modalOpen, setModalOpen] = useState(false);
-    const [activeTag, setActiveTag] = useState<string>('All');
+    const [swiperIndex, setSwiperIndex] = useState<number | null>(null);
+    const [activeSlide, setActiveSlide] = useState(0);
 
-    // Use thumbnail as hero fallback until imageUrls is populated
     const hasGallery = imageUrls.length > 0;
-    const hero = hasGallery ? thumbnail : imageUrls[0].url;
+    const hero = hasGallery ? thumbnail : imageUrls[0]?.url;
     const second = hasGallery ? imageUrls[0]?.url : null;
     const third = hasGallery ? imageUrls[1]?.url : null;
 
-    // Group images by tag for modal
-    const tags = ['All', ...Array.from(new Set(imageUrls.map(img => img.tag ?? 'Other').filter(Boolean)))];
+    const tags = Array.from(new Set(imageUrls.map(img => img.tag ?? 'Other').filter(Boolean)));
 
-    const filtered = activeTag === 'All'
-        ? imageUrls
-        : imageUrls.filter(img => img.tag === activeTag);
+    const groupedImages: Record<string, typeof imageUrls> = {};
+    for (const img of imageUrls) {
+        const key = img.tag ?? 'Other';
+        if (!groupedImages[key]) groupedImages[key] = [];
+        groupedImages[key].push(img);
+    }
 
-    // Close modal on Escape
+    const closeModal = () => {
+        setModalOpen(false);
+        if (window.location.hash.startsWith('#pg-section-')) {
+            history.replaceState(null, '', window.location.pathname + window.location.search);
+        }
+    };
+
+    const openModal = () => {
+        setModalOpen(true);
+        if (window.location.hash.startsWith('#pg-section-')) {
+            history.replaceState(null, '', window.location.pathname + window.location.search + window.location.hash);
+        }
+    }
+
+    const openLightbox = (index: number) => {
+        setActiveSlide(index);
+        setSwiperIndex(index);
+    };
+
+    const closeLightbox = () => setSwiperIndex(null);
+
+    // Escape: close lightbox first, then modal
     useEffect(() => {
         const handler = (e: KeyboardEvent) => {
-            if (e.key === 'Escape') setModalOpen(false);
+            if (e.key === 'Escape') {
+                if (swiperIndex !== null) closeLightbox();
+                else if (modalOpen) closeModal();
+            }
         };
         document.addEventListener('keydown', handler);
         return () => document.removeEventListener('keydown', handler);
-    }, []);
+    }, [swiperIndex, modalOpen]);
 
-    // Lock body scroll when modal open
+    // Lock body scroll when either layer is open
     useEffect(() => {
-        document.body.style.overflow = modalOpen ? 'hidden' : '';
+        document.body.style.overflow = (modalOpen || swiperIndex !== null) ? 'hidden' : '';
         return () => {
             document.body.style.overflow = '';
         };
-    }, [modalOpen]);
+    }, [modalOpen, swiperIndex]);
 
     return (
         <>
             {/* ── Hero Grid ── */}
             <div className="pg-hero">
-                <div className="pg-hero__main">
+                <div className="pg-hero__main" onClick={openModal}>
                     <img src={hero} alt={name} className="pg-hero__img"/>
                 </div>
 
                 {(second || third) && (
                     <div className="pg-hero__side">
                         {second && (
-                            <div className="pg-hero__side-item">
+                            <div className="pg-hero__side-item" onClick={openModal}>
                                 <img src={second} alt={`${name} 2`} className="pg-hero__img"/>
                             </div>
                         )}
                         {third && (
-                            <div className="pg-hero__side-item">
+                            <div className="pg-hero__side-item" onClick={openModal}>
                                 <img src={third} alt={`${name} 3`} className="pg-hero__img"/>
                             </div>
                         )}
                     </div>
                 )}
 
-                {/* Show all photos button */}
                 {hasGallery && (
                     <button className="pg-hero__show-all" onClick={() => setModalOpen(true)}>
                         <GridIcon/>
@@ -76,43 +107,122 @@ export function PropertyGallery({thumbnail, imageUrls, name}: PropertyGalleryPro
                 )}
             </div>
 
-            {/* ── Photo Modal ── */}
+            {/*<ImageSwiper imageUrls={imageUrls}/>*/}
+
+            {/* ── Photo Grid Modal ── */}
             {modalOpen && (
                 <>
-                    <div className="pg-modal-backdrop" onClick={() => setModalOpen(false)}/>
+                    <div className="pg-modal-backdrop" onClick={closeModal}/>
                     <div className="pg-modal" role="dialog" aria-label="All photos">
 
                         <div className="pg-modal__header">
                             <h2 className="pg-modal__title">{name} — Photos</h2>
-                            <button className="pg-modal__close" onClick={() => setModalOpen(false)}>
+                            <button className="pg-modal__close" onClick={closeModal} aria-label="Close">
                                 <CloseIcon/>
                             </button>
                         </div>
 
-                        {/* Tag filter tabs */}
+                        {/* Anchor link nav */}
                         {tags.length > 1 && (
-                            <div className="pg-modal__tabs">
+                            <nav className="pg-modal__anchor-nav">
                                 {tags.map(tag => (
-                                    <button
+                                    <a
                                         key={tag}
-                                        className={`pg-modal__tab${activeTag === tag ? ' is-active' : ''}`}
-                                        onClick={() => setActiveTag(tag)}
+                                        href={`#pg-section-${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                                        className="pg-modal__anchor-link"
                                     >
                                         {tag}
-                                    </button>
+                                    </a>
                                 ))}
-                            </div>
+                            </nav>
                         )}
 
-                        {/* Image grid */}
-                        <div className="pg-modal__grid">
-                            {filtered.map((img, i) => (
-                                <div key={i} className="pg-modal__item">
-                                    <img src={img.url} alt={img.tag ?? name} loading="lazy"/>
-                                    {img.tag && <span className="pg-modal__tag">{img.tag}</span>}
-                                </div>
-                            ))}
+                        {/* Image sections */}
+                        <div className="pg-modal__sections">
+                            {tags.length > 0
+                                ? tags.map(tag => (
+                                    <section
+                                        key={tag}
+                                        id={`pg-section-${tag.toLowerCase().replace(/\s+/g, '-')}`}
+                                        className="pg-modal__section"
+                                    >
+                                        {tags.length > 1 && (
+                                            <h3 className="pg-modal__section-title">{tag}</h3>
+                                        )}
+                                        <div className="pg-modal__grid">
+                                            {(groupedImages[tag] ?? []).map((img, i) => {
+                                                const globalIndex = imageUrls.indexOf(img);
+                                                return (
+                                                    <button
+                                                        key={i}
+                                                        className="pg-modal__item"
+                                                        onClick={() => openLightbox(globalIndex)}
+                                                        aria-label={`View ${img.tag ?? name}, photo ${i + 1}`}
+                                                    >
+                                                        <img src={img.url} alt={img.tag ?? name} loading="lazy"/>
+                                                    </button>
+                                                );
+                                            })}
+                                        </div>
+                                    </section>
+                                ))
+                                : (
+                                    <div className="pg-modal__grid">
+                                        {imageUrls.map((img, i) => (
+                                            <button
+                                                key={i}
+                                                className="pg-modal__item"
+                                                onClick={() => openLightbox(i)}
+                                                aria-label={`View photo ${i + 1}`}
+                                            >
+                                                <img src={img.url} alt={name} loading="lazy"/>
+                                            </button>
+                                        ))}
+                                    </div>
+                                )
+                            }
                         </div>
+
+                    </div>
+                </>
+            )}
+
+            {/* ── Swiper Lightbox ── */}
+            {swiperIndex !== null && (
+                <>
+                    <div className="pg-lightbox-backdrop" onClick={closeLightbox}/>
+                    <div className="pg-lightbox" role="dialog" aria-label="Photo viewer">
+
+                        {/* Counter */}
+                        <div className="pg-lightbox__counter">
+                            {activeSlide + 1} / {imageUrls.length}
+                        </div>
+
+                        {/* Close */}
+                        <button className="pg-lightbox__close" onClick={closeLightbox} aria-label="Close lightbox">
+                            <CloseIcon/>
+                        </button>
+
+                        <Swiper
+                            modules={[Navigation, Keyboard, Pagination]}
+                            navigation
+                            keyboard={{enabled: true}}
+                            pagination={{type: 'fraction', el: '.pg-lightbox__counter'}}
+                            initialSlide={swiperIndex}
+                            slidesPerView={1}
+                            spaceBetween={0}
+                            onSlideChange={swiper => setActiveSlide(swiper.activeIndex)}
+                            className="pg-lightbox__swiper"
+                        >
+                            {imageUrls.map((img, i) => (
+                                <SwiperSlide key={i} className="pg-lightbox__slide">
+                                    <img src={img.url} alt={img.tag ?? name} draggable={false}/>
+                                    {img.tag && (
+                                        <span className="pg-lightbox__caption">{img.tag}</span>
+                                    )}
+                                </SwiperSlide>
+                            ))}
+                        </Swiper>
 
                     </div>
                 </>
