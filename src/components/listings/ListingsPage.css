@@ -279,15 +279,16 @@
 
 .category-chips__list {
     display: flex;
+    flex-wrap: wrap;
     gap: 4px
 }
 
 .category-chip {
-    padding: 8px 18px;
+    padding: 8px 12px;
     background: #fff;
     border: 1px solid #d8d8d8;
     border-radius: 100px;
-    font-size: 13.5px;
+    font-size: 13px;
     font-family: inherit;
     color: #444;
     cursor: pointer;
@@ -343,6 +344,21 @@
 /* ─── Results meta ───────────────────────────────────────────────────────────── */
 .listings-page__meta {
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.listings-page__clear-all {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    font-size: 13px;
+    color: #111;
+    background: none;
+    border: none;
+    cursor: pointer;
 }
 
 .listings-page__count {
@@ -811,4 +827,45 @@
 
 .filter-group__show-all:hover {
     color: #111;
+}
+
+@media (max-width: 768px) {
+    /*Filter Searchbar*/
+    .search-bar__dropdown--guests {
+        min-width: 15.25rem;
+    }
+}
+
+@media (max-width: 588px) {
+
+    .listings-page {
+        padding: 0 16px;
+    }
+
+    /*Filter Searchbar*/
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar__divider {
+        height: 1px;
+        width: 100%;
+    }
+
+    .search-bar__dropdown--location {
+        width: 100%;
+    }
+
+    .search-bar__field {
+        width: 100%;
+    }
+
+    .search-bar__submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search-bar__dropdown--guests {
+        min-width: 15.25rem;
+    }
 }

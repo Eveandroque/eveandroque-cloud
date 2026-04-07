@@ -41,15 +41,16 @@ export function CategoryChips({
                         {opt.name}
                     </button>
                 ))}
+                <button className="category-chips__more" onClick={onMoreFilters}>
+                    <FiltersIcon/>
+                    More filters
+                    {modalCount > 0 && (
+                        <span className="category-chips__badge">{modalCount}</span>
+                    )}
+                </button>
             </div>
 
-            <button className="category-chips__more" onClick={onMoreFilters}>
-                <FiltersIcon/>
-                More filters
-                {modalCount > 0 && (
-                    <span className="category-chips__badge">{modalCount}</span>
-                )}
-            </button>
+
         </div>
     );
 }

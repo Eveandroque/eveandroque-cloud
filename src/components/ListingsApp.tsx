@@ -45,6 +45,7 @@ function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
         toggleArrayFilter,
         setPage,
         clearAll,
+        hasActiveFilters,
         modalFilterCount,
     } = useFilters();
 
@@ -98,6 +99,12 @@ function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
                     <p className="listings-page__count">
                         {total.toLocaleString()} propert{total !== 1 ? 'ies' : 'y'}
                     </p>
+                    {hasActiveFilters && (
+                        <button className="listings-page__clear-all" onClick={clearAll}>
+                            <ClearIcon/>
+                            Clear all filters
+                        </button>
+                    )}
                 </div>
             )}
 
@@ -138,3 +145,9 @@ export default function ListingsApp(props: ListingsAppProps) {
         </NuqsAdapter>
     );
 }
+
+const ClearIcon = () => (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+        <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+);

@@ -82,7 +82,7 @@ export function Footer({as: _Component = Block}) {
                                                         button={false}
                                                         block="inline"
                                                         options={{
-                                                            href: "#",
+                                                            href: "/contact",
                                                         }}
                                                     >
                                                         <Block
@@ -143,7 +143,7 @@ export function Footer({as: _Component = Block}) {
                                                         button={false}
                                                         block="inline"
                                                         options={{
-                                                            href: "#",
+                                                            href: "/contact",
                                                         }}
                                                     >
                                                         <Block tag="div">{"Contact Us"}</Block>
@@ -642,7 +642,7 @@ export function Footer({as: _Component = Block}) {
                                                             button={false}
                                                             block=""
                                                             options={{
-                                                                href: "#",
+                                                                href: "/policy/privacy-policy",
                                                             }}
                                                         >
                                                             {"Privacy Policy"}
@@ -678,7 +678,7 @@ export function Footer({as: _Component = Block}) {
                                                             button={false}
                                                             block=""
                                                             options={{
-                                                                href: "#",
+                                                                href: "/",
                                                             }}
                                                         >
                                                             {"Home"}
@@ -691,7 +691,7 @@ export function Footer({as: _Component = Block}) {
                                                             button={false}
                                                             block=""
                                                             options={{
-                                                                href: "#",
+                                                                href: "/about-us",
                                                             }}
                                                         >
                                                             {"About Us"}
@@ -704,7 +704,7 @@ export function Footer({as: _Component = Block}) {
                                                             button={false}
                                                             block=""
                                                             options={{
-                                                                href: "#",
+                                                                href: "/contact",
                                                             }}
                                                         >
                                                             {"Contact us"}
@@ -717,7 +717,7 @@ export function Footer({as: _Component = Block}) {
                                                             button={false}
                                                             block=""
                                                             options={{
-                                                                href: "#",
+                                                                href: "/working-with-us",
                                                             }}
                                                         >
                                                             {"Work with us"}

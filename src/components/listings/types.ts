@@ -78,3 +78,4 @@ export interface CountApiResponse {
     total: number;
     filters: Record<string, string[]>;
 }
+

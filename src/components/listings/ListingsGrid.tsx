@@ -33,6 +33,7 @@ export function PropertyCard({property, index}: PropertyCardProps) {
             href={`/listings/${property.slug}`}
             className="property-card"
             style={{animationDelay: `${index * 50}ms`}}
+            data-astro-prefetch="viewport"
         >
             <div className="property-card__image-wrapper">
                 {!imgLoaded && <div className="property-card__image-placeholder"/>}
