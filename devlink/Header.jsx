@@ -218,10 +218,10 @@ export function Header({
                                         button={false}
                                         block="inline"
                                         options={{
-                                            href: "#",
+                                            href: "/listings",
                                         }}
                                     >
-                                        <Block tag="div">{"Find ALocation"}</Block>
+                                        <Block tag="div">{"Find A Location"}</Block>
                                         <HtmlEmbed
                                             className={_utils.cx(
                                                 _styles,

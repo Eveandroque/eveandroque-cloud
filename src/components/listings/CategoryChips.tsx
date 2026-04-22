@@ -24,7 +24,7 @@ export function CategoryChips({
         <div className="category-chips">
             <div className="category-chips__list">
 
-                {/* ── All Properties reset button — always first ── */}
+                {/* ── All Properties reset buttons — always first ── */}
                 <button
                     className={`category-chip category-chip--all${activeFilter === null ? ' is-active' : ''}`}
                     onClick={() => onSelect(null)}
@@ -36,7 +36,7 @@ export function CategoryChips({
                     <button
                         key={opt.id}
                         className={`category-chip${activeFilter === opt.name ? ' is-active' : ''}`}
-                        onClick={() => onSelect(opt.name)}
+                        onClick={() => onSelect(activeFilter === opt.name ? null : opt.name)}
                     >
                         {opt.name}
                     </button>

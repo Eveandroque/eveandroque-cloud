@@ -402,7 +402,7 @@ button {
 @media (max-width: 640px) {
 
     .swiper-button-prev, .swiper-button-next {
-        display: none;
+        /*display: none;*/
     }
 
     .pg-lightbox {
