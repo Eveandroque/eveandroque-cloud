@@ -1,29 +1,27 @@
 "use client";
 import React from "react";
-import Section from "./_Builtin/Section";
-import Block from "./_Builtin/Block";
-import Image from "./_Builtin/Image";
-import Heading from "./_Builtin/Heading";
-import Paragraph from "./_Builtin/Paragraph";
-import Link from "./_Builtin/Link";
-import HtmlEmbed from "./_Builtin/HtmlEmbed";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Heading from "./webflow_modules/Basic/components/Heading";
+import HtmlEmbed from "./webflow_modules/Embed/components/HtmlEmbed";
+import Image from "./webflow_modules/Basic/components/Image";
+import Link from "./webflow_modules/Basic/components/Link";
+import Paragraph from "./webflow_modules/Basic/components/Paragraph";
+import Section from "./webflow_modules/Layout/components/Section";
 import { Subheading } from "./Subheading";
-import * as _utils from "./utils";
-import _styles from "./Banner.module.css";
 
 export function Banner({
-  as: _Component = Section,
-  mediaImage = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/679335bb84a80558ae112039_work-banner.webp",
-  displaySettingsOverlayVisibility = true,
-  contentHeading = "Partner with Us to Build Your ",
-  contentSubheading = "Subheading",
-  contentDescription = "Unlock opportunities to showcase your properties to a wider audience while partnering with us to achieve mutual growth and long-term success in the ever-evolving real estate market.",
-
   buttonSettingsLink = {
     href: "#",
   },
 
+  contentDescription = "Unlock opportunities to showcase your properties to a wider audience while partnering with us to achieve mutual growth and long-term success in the ever-evolving real estate market.",
+  contentHeading = "Partner with Us to Build Your ",
+  contentSubheading = "Subheading",
   contentText = "Work With Us",
+  displaySettingsOverlayVisibility = true,
+  mediaImage = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/679335bb84a80558ae112039_work-banner.webp",
   variant = "Default Content Width",
 }) {
   const _styleVariantMap = {
@@ -34,7 +32,7 @@ export function Banner({
   const _activeStyleVariant = _styleVariantMap[variant];
 
   return (
-    <_Component
+    <Section
       className={_utils.cx(
         _styles,
         "component_banner_section",
@@ -43,15 +41,15 @@ export function Banner({
       grid={{
         type: "section",
       }}
-      tag="section"
+      tag={"section"}
     >
       <Block
         className={_utils.cx(_styles, "padding-global", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       >
         <Block
           className={_utils.cx(_styles, "container-large", _activeStyleVariant)}
-          tag="div"
+          tag={"div"}
         >
           <Block
             className={_utils.cx(
@@ -59,19 +57,19 @@ export function Banner({
               "component_banner_wrap",
               _activeStyleVariant
             )}
-            tag="div"
+            tag={"div"}
           >
             <Image
+              alt={""}
               className={_utils.cx(
                 _styles,
                 "component_banner_image",
                 _activeStyleVariant
               )}
-              loading="eager"
-              width="1376"
-              height="680"
-              alt=""
+              height={"680"}
+              loading={"eager"}
               src={mediaImage}
+              width={"1376"}
             />
             {displaySettingsOverlayVisibility ? (
               <Block
@@ -80,7 +78,7 @@ export function Banner({
                   "component_banner_overlay",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               />
             ) : null}
             <Block
@@ -89,7 +87,7 @@ export function Banner({
                 "component_banner_content-wrap",
                 _activeStyleVariant
               )}
-              tag="div"
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(
@@ -97,7 +95,7 @@ export function Banner({
                   "component_banner_content",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               >
                 <Block
                   className={_utils.cx(
@@ -106,9 +104,12 @@ export function Banner({
                     "is-subheading",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Subheading contentText={contentSubheading} variant="Dark" />
+                  <Subheading
+                    contentText={contentSubheading}
+                    variant={"Dark"}
+                  />
                 </Block>
                 <Block
                   className={_utils.cx(
@@ -116,7 +117,7 @@ export function Banner({
                     "spacer-small",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 />
                 <Heading
                   className={_utils.cx(
@@ -124,7 +125,7 @@ export function Banner({
                     "heading-style-h2",
                     _activeStyleVariant
                   )}
-                  tag="h1"
+                  tag={"h1"}
                 >
                   {contentHeading}
                 </Heading>
@@ -134,7 +135,7 @@ export function Banner({
                     "spacer-small",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 />
                 <Paragraph>{contentDescription}</Paragraph>
                 <Block
@@ -143,7 +144,7 @@ export function Banner({
                     "spacer-medium",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 />
                 <Block
                   className={_utils.cx(
@@ -151,9 +152,11 @@ export function Banner({
                     "button-group",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 >
                   <Link
+                    block={"inline"}
+                    button={false}
                     className={_utils.cx(
                       _styles,
                       "button",
@@ -161,19 +164,18 @@ export function Banner({
                       "is-inversed",
                       _activeStyleVariant
                     )}
-                    button={false}
-                    block="inline"
                     options={buttonSettingsLink}
                   >
-                    <Block tag="div">{contentText}</Block>
+                    <Block tag={"div"}>{contentText}</Block>
                     <HtmlEmbed
                       className={_utils.cx(
                         _styles,
                         "icon-1x1-small",
                         _activeStyleVariant
                       )}
-                      content=""
-                      value="%3Csvg%20aria-hidden%3D%22true%22%20fill%3D%22currentColor%22%20role%3D%22img%22%20viewBox%3D%220%200%2020%2021%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Ctitle%3EArrow%20Right%3C%2Ftitle%3E%3Cpolygon%20points%3D%2216.172%209%2010.101%202.929%2011.515%201.515%2020%2010%2019.293%2010.707%2011.515%2018.485%2010.101%2017.071%2016.172%2011%200%2011%200%209%22%2F%3E%3C%2Fsvg%3E"
+                      content={
+                        '<svg aria-hidden="true" fill="currentColor" role="img" viewBox="0 0 20 21" xmlns="http://www.w3.org/2000/svg"><title>Arrow Right</title><polygon points="16.172 9 10.101 2.929 11.515 1.515 20 10 19.293 10.707 11.515 18.485 10.101 17.071 16.172 11 0 11 0 9"/></svg>'
+                      }
                     />
                   </Link>
                 </Block>
@@ -182,6 +184,6 @@ export function Banner({
           </Block>
         </Block>
       </Block>
-    </_Component>
+    </Section>
   );
 }

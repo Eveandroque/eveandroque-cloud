@@ -1,9 +1,8 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function DropdownWithIcon(props: {
-  as?: React.ElementType;
+  contentDescription?: Types.Basic.RichTextChildren;
   contentTitle?: React.ReactNode;
   mediaIcon?: Types.Asset.Image;
-  contentDescription?: Types.Basic.RichTextChildren;
 }): React.JSX.Element;

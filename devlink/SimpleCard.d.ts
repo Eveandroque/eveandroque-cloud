@@ -1,10 +1,9 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function SimpleCard(props: {
-  as?: React.ElementType;
-  mediaImage?: Types.Asset.Image;
-  contentHeading?: React.ReactNode;
   contentDescription?: React.ReactNode;
-  settingsDesignViewConditionalDisplay?: Types.Builtin.Text;
+  contentHeading?: React.ReactNode;
+  mediaImage?: Types.Asset.Image;
+  settingsDesignViewConditionalDisplay?: string;
 }): React.JSX.Element;

@@ -144,3 +144,10 @@ export async function getAllSlugs(): Promise<string[]> {
     const data: Property[] = await res.json();
     return data.map(p => p.slug).filter(Boolean);
 }
+
+export async function getFavProperties(propertyIds: string[]): Promise<PropertyDetail[]> {
+    const res = await fetch(`${WORKER_URL}/api/listings/property/${propertyIds.join(',')}`);
+
+    if (!res.ok) return [];
+    return res.json();
+}

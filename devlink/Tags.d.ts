@@ -1,10 +1,9 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function Tags(props: {
-  as?: React.ElementType;
-  count?: React.ReactNode;
-  name?: React.ReactNode;
-  icon?: Types.Asset.Image;
   componentPropertyTagItemVisibility?: Types.Visibility.VisibilityConditions;
+  count?: React.ReactNode;
+  icon?: Types.Asset.Image;
+  name?: React.ReactNode;
 }): React.JSX.Element;

@@ -446,6 +446,18 @@ button {
     color: #999;
 }
 
+.property-header__name-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+}
+
+.property-header__name-row .property-header__name {
+    margin-bottom: 0;
+    flex: 1;
+}
+
 .property-header__name {
     font-family: 'EB Garamond', Georgia, serif;
     font-size: clamp(28px, 4vw, 44px);

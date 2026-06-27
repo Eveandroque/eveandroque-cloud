@@ -1,10 +1,9 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function LocationTab(props: {
-  as?: React.ElementType;
+  bookedByBrand?: React.ReactNode;
   image?: Types.Asset.Image;
   location?: React.ReactNode;
-  bookedByBrand?: React.ReactNode;
   story?: React.ReactNode;
 }): React.JSX.Element;

@@ -1,11 +1,10 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function CallToAction(props: {
-  as?: React.ElementType;
-  contentHeading?: React.ReactNode;
-  contentDescription?: React.ReactNode;
-  buttonSettingsText?: React.ReactNode;
   buttonSettingsLink?: Types.Basic.Link;
+  buttonSettingsText?: React.ReactNode;
+  contentDescription?: React.ReactNode;
+  contentHeading?: React.ReactNode;
   mediaImage?: Types.Asset.Image;
 }): React.JSX.Element;

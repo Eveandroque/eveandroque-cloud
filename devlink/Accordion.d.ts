@@ -1,8 +1,7 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function Accordion(props: {
-  as?: React.ElementType;
-  contentQuestion?: React.ReactNode;
   contentAnswer?: React.ReactNode;
+  contentQuestion?: React.ReactNode;
 }): React.JSX.Element;

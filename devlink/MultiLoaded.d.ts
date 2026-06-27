@@ -1,18 +1,17 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function MultiLoaded(props: {
-  as?: React.ElementType;
-  contentHeading?: React.ReactNode;
-  contentDescription?: React.ReactNode;
+  bgPallete?: Types.Visibility.VisibilityConditions;
   buttonSettingsButtonText1?: React.ReactNode;
   buttonSettingsButtonText2?: React.ReactNode;
-  buttonSettingsLink2?: Types.Basic.Link;
   buttonSettingsLink1?: Types.Basic.Link;
-  mediaHeroImage?: Types.Asset.Image;
+  buttonSettingsLink2?: Types.Basic.Link;
   componentPerksBlurbList?: React.ReactNode;
-  placeholderPlaceholderVisibility?: Types.Visibility.VisibilityConditions;
+  contentDescription?: React.ReactNode;
+  contentHeading?: React.ReactNode;
   imageVisibility?: Types.Visibility.VisibilityConditions;
+  mediaHeroImage?: Types.Asset.Image;
+  placeholderPlaceholderVisibility?: Types.Visibility.VisibilityConditions;
   visibility?: Types.Visibility.VisibilityConditions;
-  bgPallete?: Types.Visibility.VisibilityConditions;
 }): React.JSX.Element;

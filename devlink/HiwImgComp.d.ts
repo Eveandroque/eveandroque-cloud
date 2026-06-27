@@ -1,12 +1,11 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function HiwImgComp(props: {
-  as?: React.ElementType;
-  imgFullImage?: Types.Asset.Image;
+  activeCardClass?: string;
   headingText?: React.ReactNode;
+  hiwCardId?: string;
+  imgFullImage?: Types.Asset.Image;
   paragraphText?: React.ReactNode;
-  activeCardClass?: Types.Builtin.Text;
-  vFxValue?: Types.Builtin.Text;
-  hiwCardId?: Types.Basic.IdTextInput;
+  vFxValue?: string;
 }): React.JSX.Element;

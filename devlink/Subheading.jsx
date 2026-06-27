@@ -1,18 +1,17 @@
 "use client";
 import React from "react";
-import Block from "./_Builtin/Block";
-import Image from "./_Builtin/Image";
-import * as _utils from "./utils";
-import _styles from "./Subheading.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Image from "./webflow_modules/Basic/components/Image";
 
 export function Subheading({
-  as: _Component = Block,
+  contentDate = "10th Jan",
   contentText = "Subheading",
   mediaIcon = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791b29053bce57b84125a46_marker.svg",
-  visibilityIconDisplay = false,
-  visibilityDateVisibility = false,
   variant = "Base",
-  contentDate = "10th Jan",
+  visibilityDateVisibility = false,
+  visibilityIconDisplay = false,
 }) {
   const _styleVariantMap = {
     Base: "",
@@ -22,33 +21,33 @@ export function Subheading({
   const _activeStyleVariant = _styleVariantMap[variant];
 
   return (
-    <_Component
+    <Block
       className={_utils.cx(_styles, "subheading_wrap", _activeStyleVariant)}
-      tag="div"
+      tag={"div"}
     >
       <Block
         className={_utils.cx(_styles, "subheading", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       >
         {visibilityIconDisplay ? (
           <Image
+            alt={""}
             className={_utils.cx(
               _styles,
               "subheading-icon",
               _activeStyleVariant
             )}
-            loading="lazy"
-            width="16"
-            height="16"
-            alt=""
+            height={"16"}
+            loading={"lazy"}
             src={mediaIcon}
+            width={"16"}
           />
         ) : null}
-        <Block tag="div">{contentText}</Block>
+        <Block tag={"div"}>{contentText}</Block>
         {visibilityDateVisibility ? (
-          <Block tag="div">{contentDate}</Block>
+          <Block tag={"div"}>{contentDate}</Block>
         ) : null}
       </Block>
-    </_Component>
+    </Block>
   );
 }

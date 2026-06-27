@@ -1,84 +1,86 @@
 "use client";
 import React from "react";
-import Block from "./_Builtin/Block";
-import HtmlEmbed from "./_Builtin/HtmlEmbed";
-import NotSupported from "./_Builtin/NotSupported";
-import FormCheckboxWrapper from "./_Builtin/FormCheckboxWrapper";
-import FormCheckboxInput from "./_Builtin/FormCheckboxInput";
-import FormInlineLabel from "./_Builtin/FormInlineLabel";
-import DOM from "./_Builtin/DOM";
-import Span from "./_Builtin/Span";
-import { dynamoPlainTextToText } from "./values/DynamoGateway/dynamoPlainTextToText";
-import { dynamoPlainTextToListOfElements } from "./values/DynamoGateway/dynamoPlainTextToListOfElements";
-import * as _utils from "./utils";
-import _styles from "./PopupComp.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import DOM from "./webflow_modules/Builtin/components/DOM";
+import FormCheckboxInput from "./webflow_modules/Form/components/FormCheckboxInput";
+import FormCheckboxWrapper from "./webflow_modules/Form/components/FormCheckboxWrapper";
+import FormInlineLabel from "./webflow_modules/Form/components/FormInlineLabel";
+import HtmlEmbed from "./webflow_modules/Embed/components/HtmlEmbed";
+import NotSupported from "./webflow_modules/Builtin/components/NotSupported";
+import Span from "./webflow_modules/Basic/components/Span";
 
-export function PopupComp({ as: _Component = Block }) {
+export function PopupComp({}) {
   return (
-    <_Component
+    <Block
       className={_utils.cx(_styles, "pop-filter")}
-      tag="div"
-      id="pop_element"
+      id={_utils.cx(_styles, "pop_element")}
+      tag={"div"}
     >
       <Block
         className={_utils.cx(_styles, "div-block")}
-        tag="div"
-        filters--wrapper=""
+        filters--wrapper={""}
+        tag={"div"}
       >
         <HtmlEmbed
           className={_utils.cx(_styles, "icon-em", "close-btn")}
-          content=""
-          close-popup=""
-          value="%3Csvg%20width%3D%221.5rem%22%20height%3D%221.5rem%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M6.4%2019L5%2017.6L10.6%2012L5%206.4L6.4%205L12%2010.6L17.6%205L19%206.4L13.4%2012L19%2017.6L17.6%2019L12%2013.4L6.4%2019Z%22%20fill%3D%22%23CCCCCC%22%2F%3E%0A%3C%2Fsvg%3E"
+          close-popup={""}
+          content={
+            '<svg width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M6.4 19L5 17.6L10.6 12L5 6.4L6.4 5L12 10.6L17.6 5L19 6.4L13.4 12L19 17.6L17.6 19L12 13.4L6.4 19Z" fill="#CCCCCC"/>\n</svg>'
+          }
         />
         <Block
           className={_utils.cx(_styles, "pop-filter--container")}
-          tag="div"
+          tag={"div"}
         >
-          <Block className={_utils.cx(_styles, "filter-tx")} tag="div">
-            <Block className={_utils.cx(_styles, "_w-600")} tag="div">
+          <Block className={_utils.cx(_styles, "filter-tx")} tag={"div"}>
+            <Block className={_utils.cx(_styles, "_w-600")} tag={"div"}>
               {"Filters"}
             </Block>
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"General Filters"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "filter-item-container")}
-                tag="div"
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "show-all-tx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
                 <Block
                   className={_utils.cx(_styles, "hide-filter-tx")}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Hide"}
                 </Block>
@@ -87,44 +89,47 @@ export function PopupComp({ as: _Component = Block }) {
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Style"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "filter-item-container")}
-                tag="div"
-                filter-height="container"
+                filter-height={"container"}
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "show-all-tx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
                 <Block
                   className={_utils.cx(_styles, "hide-filter-tx")}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Hide"}
                 </Block>
@@ -133,43 +138,46 @@ export function PopupComp({ as: _Component = Block }) {
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Search Area"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "filter-item-container")}
-                tag="div"
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "show-all-tx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
                 <Block
                   className={_utils.cx(_styles, "hide-filter-tx")}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Hide"}
                 </Block>
@@ -178,108 +186,120 @@ export function PopupComp({ as: _Component = Block }) {
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Scenic Views"}
             </Block>
-            <NotSupported _atom="DynamoWrapper" />
+            <NotSupported _atom={"Collection List"} />
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Parking"}
             </Block>
-            <NotSupported _atom="DynamoWrapper" />
+            <NotSupported _atom={"Collection List"} />
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Outdoor Features & Entertainment"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "filter-item-container")}
-                tag="div"
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "show-all-tx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
                 </Block>
                 <Block
                   className={_utils.cx(_styles, "hide-filter-tx")}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Hide"}
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
               </DOM>
             </Block>
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Indoor Features & Entertainment"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "filter-item-container")}
-                tag="div"
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "show-all-tx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
                 <Block
                   className={_utils.cx(_styles, "hide-filter-tx")}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Hide"}
                 </Block>
@@ -288,43 +308,46 @@ export function PopupComp({ as: _Component = Block }) {
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Pool & Spa"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "filter-item-container")}
-                tag="div"
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "show-all-tx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
                 <Block
                   className={_utils.cx(_styles, "hide-filter-tx")}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Hide"}
                 </Block>
@@ -333,16 +356,19 @@ export function PopupComp({ as: _Component = Block }) {
           </Block>
           <Block
             className={_utils.cx(_styles, "v-fx", "g-24", "brder-btm")}
-            tag="div"
-            filter-container=""
+            filter-container={""}
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "t-s-20", "_w-500")} tag="div">
+            <Block
+              className={_utils.cx(_styles, "t-s-20", "_w-500")}
+              tag={"div"}
+            >
               {"Rules/Allows"}
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-height--container")}
-              tag="div"
-              filter--container=""
+              filter--container={""}
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(
@@ -350,54 +376,55 @@ export function PopupComp({ as: _Component = Block }) {
                   "filter-item-container",
                   "short-list"
                 )}
-                tag="div"
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
               <DOM
+                btn={"show-all"}
                 className={_utils.cx(_styles, "show-more--btn", "hidebtn")}
-                tag="a"
-                slot=""
-                btn="show-all"
+                tag={"a"}
               >
                 <Block
                   className={_utils.cx(_styles, "h-fx", "g-4ch")}
-                  tag="div"
+                  tag={"div"}
                 >
-                  <Block tag="div">{"Show all"}</Block>
-                  <Block tag="div">{"(5+)"}</Block>
+                  <Block tag={"div"}>{"Show all"}</Block>
+                  <Block tag={"div"}>{"(5+)"}</Block>
                 </Block>
                 <HtmlEmbed
                   className={_utils.cx(_styles, "icon-em")}
-                  content=""
-                  value="%3Csvg%20width%3D%220.875rem%22%20height%3D%220.875rem%22%20viewBox%3D%220%200%2014%2014%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20fill-rule%3D%22evenodd%22%20clip-rule%3D%22evenodd%22%20d%3D%22M7.00018%208.93106L10.3724%205.55969L9.75381%204.94019L7.00018%207.69381L4.24743%204.94019L3.62793%205.55969L7.00018%208.93106Z%22%20fill%3D%22black%22%2F%3E%0A%3C%2Fsvg%3E"
+                  content={
+                    '<svg width="0.875rem" height="0.875rem" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path fill-rule="evenodd" clip-rule="evenodd" d="M7.00018 8.93106L10.3724 5.55969L9.75381 4.94019L7.00018 7.69381L4.24743 4.94019L3.62793 5.55969L7.00018 8.93106Z" fill="black"/>\n</svg>'
+                  }
                 />
               </DOM>
             </Block>
           </Block>
         </Block>
-        <Block className={_utils.cx(_styles, "filter-btn--wrapper")} tag="div">
+        <Block
+          className={_utils.cx(_styles, "filter-btn--wrapper")}
+          tag={"div"}
+        >
           <DOM
             className={_utils.cx(_styles, "clear--btn")}
-            tag="a"
-            slot=""
-            fs-list-element="clear"
+            fs-list-element={"clear"}
+            tag={"a"}
           >
-            <Block tag="div">{"Clear all"}</Block>
+            <Block tag={"div"}>{"Clear all"}</Block>
           </DOM>
           <DOM
             className={_utils.cx(_styles, "show--list")}
-            tag="a"
-            slot=""
-            close-filer="btn"
-            close-popup=""
+            close-filer={"btn"}
+            close-popup={""}
+            tag={"a"}
           >
-            <Block tag="div">
+            <Block tag={"div"}>
               <Span>{"Show "}</Span>
               <Span
                 className={_utils.cx(_styles, "filter-items--number")}
-                item-num=""
-                fs-list-element="results-count"
+                fs-list-element={"results-count"}
+                item-num={""}
               >
                 {"4"}
               </Span>
@@ -405,17 +432,18 @@ export function PopupComp({ as: _Component = Block }) {
             </Block>
             <HtmlEmbed
               className={_utils.cx(_styles, "icon-em")}
-              content=""
-              value="%3Csvg%20width%3D%221.5rem%22%20height%3D%221.5rem%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M3%2012.013L20.789%2012M14.012%2019L21%2012L14.012%205%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E"
+              content={
+                '<svg width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M3 12.013L20.789 12M14.012 19L21 12L14.012 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>'
+              }
             />
           </DOM>
         </Block>
       </Block>
       <Block
         className={_utils.cx(_styles, "close--area")}
-        tag="div"
-        close-popup=""
+        close-popup={""}
+        tag={"div"}
       />
-    </_Component>
+    </Block>
   );
 }

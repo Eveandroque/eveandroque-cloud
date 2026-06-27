@@ -1,10 +1,10 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function PropertyListings(props: {
-  as?: React.ElementType;
-  locationsApiUrl?: Types.Builtin.Text;
-  listingsApiUrl?: Types.Builtin.Text;
-  ctaButtonLabel?: Types.Builtin.Text;
-  ctaLink?: Types.Builtin.Text;
+  ctaButtonLabel?: string;
+  ctaLink?: string;
+  listingsApiUrl?: string;
+  locationsApiUrl?: string;
+  numberOfCards?: number;
 }): React.JSX.Element;

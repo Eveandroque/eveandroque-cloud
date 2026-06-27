@@ -1,10 +1,9 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function TeamCard(props: {
-  as?: React.ElementType;
-  mediaImage?: Types.Asset.Image;
-  contentPosition?: React.ReactNode;
-  contentName?: React.ReactNode;
   contentDescription?: React.ReactNode;
+  contentName?: React.ReactNode;
+  contentPosition?: React.ReactNode;
+  mediaImage?: Types.Asset.Image;
 }): React.JSX.Element;

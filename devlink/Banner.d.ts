@@ -1,14 +1,13 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function Banner(props: {
-  as?: React.ElementType;
-  mediaImage?: Types.Asset.Image;
-  displaySettingsOverlayVisibility?: Types.Visibility.VisibilityConditions;
+  buttonSettingsLink?: Types.Basic.Link;
+  contentDescription?: React.ReactNode;
   contentHeading?: React.ReactNode;
   contentSubheading?: React.ReactNode;
-  contentDescription?: React.ReactNode;
-  buttonSettingsLink?: Types.Basic.Link;
   contentText?: React.ReactNode;
+  displaySettingsOverlayVisibility?: Types.Visibility.VisibilityConditions;
+  mediaImage?: Types.Asset.Image;
   variant?: "Default Content Width" | "Small Content Width";
 }): React.JSX.Element;

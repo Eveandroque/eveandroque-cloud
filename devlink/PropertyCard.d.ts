@@ -1,23 +1,22 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function PropertyCard(props: {
-  as?: React.ElementType;
+  componentPropertyTagList?: React.ReactNode;
   contentAvailabilityText?: React.ReactNode;
+  contentDateText?: React.ReactNode;
+  contentDescription?: React.ReactNode;
   contentLocationText?: React.ReactNode;
   contentPropertyNameText?: React.ReactNode;
-  contentDescription?: React.ReactNode;
-  mediaImage?: Types.Asset.Image;
-  mediaSettingsAltText?: Types.Basic.AltText;
-  componentPropertyTagList?: React.ReactNode;
-  contentDateText?: React.ReactNode;
-  settingsDateVisibility?: Types.Visibility.VisibilityConditions;
-  link?: Types.Basic.Link;
-  variant?: "Base" | "listing-card";
-  textSizeSmallVisibility?: Types.Visibility.VisibilityConditions;
-  visibilityDate?: Types.Visibility.VisibilityConditions;
-  visibilityStarRating?: Types.Visibility.VisibilityConditions;
+  detailsParagraphVisibility?: Types.Visibility.VisibilityConditions;
   image?: Types.Asset.Image;
   image2?: Types.Asset.Image;
-  detailsParagraphVisibility?: Types.Visibility.VisibilityConditions;
+  link?: Types.Basic.Link;
+  mediaImage?: Types.Asset.Image;
+  mediaSettingsAltText?: Types.Basic.AltText;
+  settingsDateVisibility?: Types.Visibility.VisibilityConditions;
+  textSizeSmallVisibility?: Types.Visibility.VisibilityConditions;
+  variant?: "Base" | "listing-card";
+  visibilityDate?: Types.Visibility.VisibilityConditions;
+  visibilityStarRating?: Types.Visibility.VisibilityConditions;
 }): React.JSX.Element;

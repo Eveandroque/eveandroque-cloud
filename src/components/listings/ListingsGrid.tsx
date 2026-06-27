@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import type {Property} from './types';
+import {HeartButton} from "../projects/HeartButton.tsx";
 
-// ─── Skeleton Card ─────────────────────────────────────────────────────────────
+// Skeleton Card
 
 export const SkeletonCard = () => (
     <div className="skeleton-card">
@@ -18,7 +19,7 @@ export const SkeletonCard = () => (
     </div>
 );
 
-// ─── Property Card ─────────────────────────────────────────────────────────────
+// Property Card
 
 interface PropertyCardProps {
     property: Property;
@@ -45,6 +46,9 @@ export function PropertyCard({property, index}: PropertyCardProps) {
                     onLoad={() => setImgLoaded(true)}
                     loading="lazy"
                 />
+                <HeartButton propertyId={property.id}
+                             propertyThumbnail={property.thumbnail}
+                             variant="card"/>
             </div>
 
             <div className="property-card__body">
@@ -74,7 +78,7 @@ export function PropertyCard({property, index}: PropertyCardProps) {
     );
 }
 
-// ─── Listings Grid ─────────────────────────────────────────────────────────────
+// Listings Grid
 
 interface ListingsGridProps {
     listings: Property[],

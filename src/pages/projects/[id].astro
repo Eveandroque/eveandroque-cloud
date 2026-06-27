@@ -1,0 +1,26 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import {ProjectDetailApp} from '../../components/projects/ProjectDetailApp';
+
+const {id} = Astro.params;
+const workerUrl = import.meta.env.PUBLIC_WORKER_URL;
+---
+
+<Layout>
+    <div class="content-area">
+        <ProjectDetailApp client:load projectId={id!} baseApiUrl={workerUrl}/>
+    </div>
+</Layout>
+
+<style>
+    .content-area {
+        padding-top: 8rem;
+        min-height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+        .content-area {
+            padding-top: 6rem;
+        }
+    }
+</style>

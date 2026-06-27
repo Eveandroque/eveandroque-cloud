@@ -1,8 +1,7 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function AmenitiesCard(props: {
-  as?: React.ElementType;
-  mediaIcon?: Types.Asset.Image;
   contentName?: React.ReactNode;
+  mediaIcon?: Types.Asset.Image;
 }): React.JSX.Element;
