@@ -47,9 +47,16 @@
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 20px;
+    padding: 20px 20px 12px;
     border-bottom: 1px solid #f0f0f0;
 }
+
+.auth-modal__content {
+    display: flex;
+    flex-direction: column;
+    gap: 1.75rem;
+}
+
 
 .auth_modal__titlewrap {
     width: 80%;
@@ -91,7 +98,7 @@
 }
 
 .auth-modal__body {
-    padding: 20px;
+    padding: 10px 20px 20px;
 }
 
 .auth-modal__google {
@@ -219,4 +226,12 @@
     justify-items: center;
     padding: 12px;
     background: #ebf2f8;
+}
+
+@media (max-width: 768px) {
+
+    .auth-modal__input {
+        font-size: 16px;
+    }
+
 }

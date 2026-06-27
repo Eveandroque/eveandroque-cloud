@@ -56,11 +56,11 @@ export function AuthModal() {
                         <div className="auth-modal__logo">
                             <HeartIcon/>
                         </div>
-                        <div>
-                            <h2 className="auth-modal__title">Save your favourite properties</h2>
-                            <p className="auth-modal__subtitle">We'll send a one-time code to your email. <br/>No
-                                password needed.</p>
-                        </div>
+                        {/*<div>*/}
+                        {/*    <h2 className="auth-modal__title">Save your favourite properties</h2>*/}
+                        {/*    <p className="auth-modal__subtitle">We'll send a one-time code to your email. <br/>No*/}
+                        {/*        password needed.</p>*/}
+                        {/*</div>*/}
                     </div>
                     <button className="auth-modal__close" onClick={handleClose} aria-label="Close">
                         <CloseIcon/>
@@ -71,7 +71,8 @@ export function AuthModal() {
                         <div className="auth-modal__success">
                             <div className="auth-modal__success-icon">✉️</div>
                             <h3>Check your email</h3>
-                            <p>Magic link sent to <strong>{email}</strong>. Click it to sign in.</p>
+                            <p style={{marginBottom: '20px'}}>Magic link sent to <strong>{email}</strong>. Click it to
+                                sign in.</p>
                             <form onSubmit={handleVerifyOtp}>
                                 <input
                                     id="verify-otp"
@@ -94,32 +95,40 @@ export function AuthModal() {
                         </div>
                     ) : (
                         <>
-                            {/*<button className="auth-modal__google" onClick={signInWithGoogle}>*/}
-                            {/*    <GoogleIcon/> Continue with Google*/}
-                            {/*</button>*/}
-                            {/*<div className="auth-modal__divider"><span>or</span></div>*/}
-                            <form onSubmit={handleSubmit}>
-                                <label className="auth-modal__label" htmlFor="auth-email">Email address</label>
-                                <input
-                                    id="auth-email"
-                                    type="email"
-                                    className="auth-modal__input"
-                                    placeholder="you@example.com"
-                                    value={email}
-                                    onChange={(e) => setEmail(e.target.value)}
-                                    autoFocus
-                                    required
-                                />
-                                {error && <p className="auth-modal__error">{error}</p>}
-                                <button type="submit" className="auth-modal__submit"
-                                        disabled={isSubmitting || !email.trim()}>
-                                    {isSubmitting ? 'Sending…' : 'Send code'}
-                                </button>
-                            </form>
+                            <div className="auth-modal__content">
+                                <div>
+                                    <h2 className="auth-modal__title">Save your favourite properties</h2>
+                                    <p className="auth-modal__subtitle">We'll send a one-time code to your email. <br/>No
+                                        password needed.</p>
+                                </div>
+                                {/*<button className="auth-modal__google" onClick={signInWithGoogle}>*/}
+                                {/*    <GoogleIcon/> Continue with Google*/}
+                                {/*</button>*/}
+                                {/*<div className="auth-modal__divider"><span>or</span></div>*/}
+                                <form onSubmit={handleSubmit}>
+                                    <label className="auth-modal__label" htmlFor="auth-email">Email address</label>
+                                    <input
+                                        id="auth-email"
+                                        type="email"
+                                        className="auth-modal__input"
+                                        placeholder="you@example.com"
+                                        value={email}
+                                        onChange={(e) => setEmail(e.target.value)}
+                                        autoFocus
+                                        required
+                                    />
+                                    {error && <p className="auth-modal__error">{error}</p>}
+                                    <button type="submit" className="auth-modal__submit"
+                                            disabled={isSubmitting || !email.trim()}>
+                                        {isSubmitting ? 'Sending…' : 'Send code'}
+                                    </button>
+                                </form>
+                            </div>
                         </>
                     )}
                 </div>
             </div>
+
         </>
     );
 }
