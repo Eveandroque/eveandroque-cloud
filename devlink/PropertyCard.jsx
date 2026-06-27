@@ -1,39 +1,38 @@
 "use client";
 import React from "react";
-import Link from "./_Builtin/Link";
-import Block from "./_Builtin/Block";
-import HtmlEmbed from "./_Builtin/HtmlEmbed";
-import Image from "./_Builtin/Image";
-import Heading from "./_Builtin/Heading";
-import Paragraph from "./_Builtin/Paragraph";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Heading from "./webflow_modules/Basic/components/Heading";
+import HtmlEmbed from "./webflow_modules/Embed/components/HtmlEmbed";
+import Image from "./webflow_modules/Basic/components/Image";
+import Link from "./webflow_modules/Basic/components/Link";
+import Paragraph from "./webflow_modules/Basic/components/Paragraph";
 import { Subheading } from "./Subheading";
 import { Tags } from "./Tags";
-import * as _utils from "./utils";
-import _styles from "./PropertyCard.module.css";
 
 export function PropertyCard({
-  as: _Component = Link,
+  componentPropertyTagList,
   contentAvailabilityText = "Available from: 10th Jan",
+  contentDateText = "10th Jan",
+  contentDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
   contentLocationText = "Austin, Texas",
   contentPropertyNameText = "The Glass Horizon Villa",
-  contentDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
-  mediaImage = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791aff08783b3a42005ff08_property-placeholder.webp",
-  mediaSettingsAltText = "__wf_reserved_inherit",
-  componentPropertyTagList,
-  contentDateText = "10th Jan",
-  settingsDateVisibility = true,
+  detailsParagraphVisibility = true,
+  image = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791aff08783b3a42005ff08_property-placeholder.webp",
+  image2 = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791aff08783b3a42005ff08_property-placeholder.webp",
 
   link = {
     href: "#",
   },
 
-  variant = "Base",
+  mediaImage = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791aff08783b3a42005ff08_property-placeholder.webp",
+  mediaSettingsAltText = "__wf_reserved_inherit",
+  settingsDateVisibility = true,
   textSizeSmallVisibility = true,
+  variant = "Base",
   visibilityDate = true,
   visibilityStarRating = true,
-  image = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791aff08783b3a42005ff08_property-placeholder.webp",
-  image2 = "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791aff08783b3a42005ff08_property-placeholder.webp",
-  detailsParagraphVisibility = true,
 }) {
   const _styleVariantMap = {
     Base: "",
@@ -43,14 +42,14 @@ export function PropertyCard({
   const _activeStyleVariant = _styleVariantMap[variant];
 
   return (
-    <_Component
+    <Link
+      block={"inline"}
+      button={false}
       className={_utils.cx(
         _styles,
         "component_property_card",
         _activeStyleVariant
       )}
-      button={false}
-      block="inline"
       options={link}
     >
       <Block
@@ -59,7 +58,7 @@ export function PropertyCard({
           "component_property_image-wrap",
           _activeStyleVariant
         )}
-        tag="div"
+        tag={"div"}
       >
         <Block
           className={_utils.cx(
@@ -67,7 +66,7 @@ export function PropertyCard({
             "component_property_overlay",
             _activeStyleVariant
           )}
-          tag="div"
+          tag={"div"}
         >
           {visibilityDate ? (
             <Block
@@ -76,11 +75,11 @@ export function PropertyCard({
                 "component_property_overlay-item",
                 _activeStyleVariant
               )}
-              tag="div"
+              tag={"div"}
             >
               <Subheading
-                contentText={contentAvailabilityText}
                 contentDate={contentDateText}
+                contentText={contentAvailabilityText}
                 visibilityDateVisibility={settingsDateVisibility}
               />
             </Block>
@@ -92,7 +91,7 @@ export function PropertyCard({
                 "component_property_overlay-item",
                 _activeStyleVariant
               )}
-              tag="div"
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(
@@ -100,7 +99,7 @@ export function PropertyCard({
                   "subheading_wrap",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               >
                 <Block
                   className={_utils.cx(
@@ -108,8 +107,8 @@ export function PropertyCard({
                     "subheading",
                     _activeStyleVariant
                   )}
-                  tag="div"
-                  favourite-icon=""
+                  favourite-icon={""}
+                  tag={"div"}
                 >
                   <HtmlEmbed
                     className={_utils.cx(
@@ -117,8 +116,9 @@ export function PropertyCard({
                       "property_star_embed",
                       _activeStyleVariant
                     )}
-                    content=""
-                    value="%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20viewBox%3D%220%200%2020%2018%22%20fill%3D%22currentColor%22%3E%3Cpath%20d%3D%22M9.99958%200.666992L12.5862%206.27366L18.7179%207.00116L14.1846%2011.1928L15.3879%2017.2495L9.99958%2014.2337L4.61125%2017.2503L5.81458%2011.1937L1.28125%207.00033L7.41375%206.27283L9.99958%200.666992Z%22%20stroke%3D%22%23000%22%20stroke-linejoin%3D%22round%22%2F%3E%3C%2Fsvg%3E"
+                    content={
+                      '<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 20 18" fill="currentColor"><path d="M9.99958 0.666992L12.5862 6.27366L18.7179 7.00116L14.1846 11.1928L15.3879 17.2495L9.99958 14.2337L4.61125 17.2503L5.81458 11.1937L1.28125 7.00033L7.41375 6.27283L9.99958 0.666992Z" stroke="#000" stroke-linejoin="round"/></svg>'
+                    }
                   />
                 </Block>
               </Block>
@@ -131,19 +131,19 @@ export function PropertyCard({
             "component_property_image",
             _activeStyleVariant
           )}
-          loading="lazy"
-          width="400"
-          height="340"
+          height={"340"}
+          loading={"lazy"}
           src={image2}
+          width={"400"}
         />
       </Block>
       <Block
         className={_utils.cx(_styles, "spacer-small", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       />
       <Block
         className={_utils.cx(_styles, "button-group", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       >
         <Subheading
           contentText={contentLocationText}
@@ -152,7 +152,7 @@ export function PropertyCard({
       </Block>
       <Block
         className={_utils.cx(_styles, "spacer-small", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       />
       <Block
         className={_utils.cx(
@@ -160,7 +160,7 @@ export function PropertyCard({
           "component_property_name-wrap",
           _activeStyleVariant
         )}
-        tag="div"
+        tag={"div"}
       >
         <Heading
           className={_utils.cx(
@@ -168,14 +168,14 @@ export function PropertyCard({
             "heading-style-h4",
             _activeStyleVariant
           )}
-          tag="h3"
+          tag={"h3"}
         >
           {contentPropertyNameText}
         </Heading>
       </Block>
       <Block
         className={_utils.cx(_styles, "spacer-xsmall", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       />
       {detailsParagraphVisibility ? (
         <Block
@@ -184,7 +184,7 @@ export function PropertyCard({
             "component_property_description-wrap",
             _activeStyleVariant
           )}
-          tag="div"
+          tag={"div"}
         >
           {textSizeSmallVisibility ? (
             <Paragraph
@@ -201,7 +201,7 @@ export function PropertyCard({
       ) : null}
       <Block
         className={_utils.cx(_styles, "spacer-small", _activeStyleVariant)}
-        tag="div"
+        tag={"div"}
       />
       {componentPropertyTagList}
       <Block
@@ -211,16 +211,18 @@ export function PropertyCard({
           "hide",
           _activeStyleVariant
         )}
-        tag="div"
+        tag={"div"}
       >
         <Tags />
-        <Tags count="5" name="Baths" />
+        <Tags count={"5"} name={"Baths"} />
         <Tags
-          icon="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791b38db1c9175a4df925b0_shower.svg"
-          name="Guests"
-          count="10"
+          count={"10"}
+          icon={
+            "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/6791b38db1c9175a4df925b0_shower.svg"
+          }
+          name={"Guests"}
         />
       </Block>
-    </_Component>
+    </Link>
   );
 }

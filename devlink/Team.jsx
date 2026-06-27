@@ -1,21 +1,20 @@
 "use client";
 import React from "react";
-import Section from "./_Builtin/Section";
-import Block from "./_Builtin/Block";
-import Heading from "./_Builtin/Heading";
-import Paragraph from "./_Builtin/Paragraph";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Heading from "./webflow_modules/Basic/components/Heading";
+import Paragraph from "./webflow_modules/Basic/components/Paragraph";
+import Section from "./webflow_modules/Layout/components/Section";
 import { Subheading } from "./Subheading";
 import { TeamCard } from "./TeamCard";
-import * as _utils from "./utils";
-import _styles from "./Team.module.css";
 
 export function Team({
-  as: _Component = Section,
   componentTeamList,
-  displaySettingsPlaceholderVisibility = true,
-  contentSubheading = "Meet",
-  contentHeading = "Our ",
   contentDescription = "Dedicated professionals passionate about luxury venues.",
+  contentHeading = "Our ",
+  contentSubheading = "Meet",
+  displaySettingsPlaceholderVisibility = true,
 }) {
-  return;
+  return null;
 }

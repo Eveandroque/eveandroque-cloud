@@ -1,12 +1,11 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function StepsCard(props: {
-  as?: React.ElementType;
-  mediaImage?: Types.Asset.Image;
-  contentHeading?: React.ReactNode;
-  contentSimpleDescriptionVisibility?: Types.Visibility.VisibilityConditions;
   contentDescription?: React.ReactNode;
-  contentRichTextDescriptionVisibility?: Types.Visibility.VisibilityConditions;
+  contentHeading?: React.ReactNode;
   contentRichTextDescription?: Types.Basic.RichTextChildren;
+  contentRichTextDescriptionVisibility?: Types.Visibility.VisibilityConditions;
+  contentSimpleDescriptionVisibility?: Types.Visibility.VisibilityConditions;
+  mediaImage?: Types.Asset.Image;
 }): React.JSX.Element;

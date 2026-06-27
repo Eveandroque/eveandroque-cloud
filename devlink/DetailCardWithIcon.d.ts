@@ -1,12 +1,11 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function DetailCardWithIcon(props: {
-  as?: React.ElementType;
-  mediaImage?: Types.Asset.Image;
-  contentHeading?: React.ReactNode;
   contentDescription?: React.ReactNode;
-  contentLinkText?: React.ReactNode;
+  contentHeading?: React.ReactNode;
   contentLink?: Types.Basic.Link;
+  contentLinkText?: React.ReactNode;
+  mediaImage?: Types.Asset.Image;
   visibility?: Types.Visibility.VisibilityConditions;
 }): React.JSX.Element;

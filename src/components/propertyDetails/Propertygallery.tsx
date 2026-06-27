@@ -107,8 +107,6 @@ export function PropertyGallery({thumbnail, imageUrls, name}: PropertyGalleryPro
                 )}
             </div>
 
-            {/*<ImageSwiper imageUrls={imageUrls}/>*/}
-
             {/* ── Photo Grid Modal ── */}
             {modalOpen && (
                 <>

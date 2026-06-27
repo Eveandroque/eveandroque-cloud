@@ -1,30 +1,28 @@
 "use client";
 import React from "react";
-import FormWrapper from "./_Builtin/FormWrapper";
-import FormForm from "./_Builtin/FormForm";
-import Block from "./_Builtin/Block";
-import Image from "./_Builtin/Image";
-import NotSupported from "./_Builtin/NotSupported";
-import FormRadioWrapper from "./_Builtin/FormRadioWrapper";
-import FormRadioInput from "./_Builtin/FormRadioInput";
-import FormInlineLabel from "./_Builtin/FormInlineLabel";
-import DOM from "./_Builtin/DOM";
-import FormTextInput from "./_Builtin/FormTextInput";
-import Link from "./_Builtin/Link";
-import HtmlEmbed from "./_Builtin/HtmlEmbed";
-import FormSuccessMessage from "./_Builtin/FormSuccessMessage";
-import FormErrorMessage from "./_Builtin/FormErrorMessage";
-import { dynamoPlainTextToListOfElements } from "./values/DynamoGateway/dynamoPlainTextToListOfElements";
-import * as _utils from "./utils";
-import _styles from "./FilterComp.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import DOM from "./webflow_modules/Builtin/components/DOM";
+import FormErrorMessage from "./webflow_modules/Form/components/FormErrorMessage";
+import FormForm from "./webflow_modules/Form/components/FormForm";
+import FormInlineLabel from "./webflow_modules/Form/components/FormInlineLabel";
+import FormRadioInput from "./webflow_modules/Form/components/FormRadioInput";
+import FormRadioWrapper from "./webflow_modules/Form/components/FormRadioWrapper";
+import FormSuccessMessage from "./webflow_modules/Form/components/FormSuccessMessage";
+import FormTextInput from "./webflow_modules/Form/components/FormTextInput";
+import FormWrapper from "./webflow_modules/Form/components/FormWrapper";
+import HtmlEmbed from "./webflow_modules/Embed/components/HtmlEmbed";
+import Image from "./webflow_modules/Basic/components/Image";
+import Link from "./webflow_modules/Basic/components/Link";
+import NotSupported from "./webflow_modules/Builtin/components/NotSupported";
 
 export function FilterComp({
-  as: _Component = FormWrapper,
-  variant = "Base",
-  dFlxVisibility = true,
   btnLinkVisibility = true,
-  inputPriceVisibility = true,
+  dFlxVisibility = true,
   inputBedroomVisibility = true,
+  inputPriceVisibility = true,
+  variant = "Base",
 }) {
   const _styleVariantMap = {
     Base: "",
@@ -34,24 +32,20 @@ export function FilterComp({
   const _activeStyleVariant = _styleVariantMap[variant];
 
   return (
-    <_Component
+    <FormWrapper
       className={_utils.cx(_styles, "filter--block", _activeStyleVariant)}
     >
       <FormForm
         className={_utils.cx(_styles, "form", _activeStyleVariant)}
-        name="email-form-2"
-        data-name="Email Form 2"
-        method="get"
-        fs-cmsfilter-element="filters"
-        id="email-form-2"
+        data-name={"Email Form 2"}
+        fs-cmsfilter-element={"filters"}
+        id={_utils.cx(_styles, "email-form-2")}
+        method={"get"}
+        name={"email-form-2"}
       >
         <Block
           className={_utils.cx(_styles, "filter--form", _activeStyleVariant)}
-          id={_utils.cx(
-            _styles,
-            "w-node-be9b0d29-0555-bc0e-43f3-0135ba5eb1f2-ba5eb1f0"
-          )}
-          tag="div"
+          tag={"div"}
         >
           <Block
             className={_utils.cx(
@@ -59,28 +53,26 @@ export function FilterComp({
               "input--wrapper",
               _activeStyleVariant
             )}
-            id={_utils.cx(
-              _styles,
-              "w-node-be9b0d29-0555-bc0e-43f3-0135ba5eb1f3-ba5eb1f0"
-            )}
-            tag="div"
-            filter--container=""
+            filter--container={""}
+            tag={"div"}
           >
             <Block
               className={_utils.cx(_styles, "d-flx", _activeStyleVariant)}
-              tag="div"
-              drop-trigger=""
+              drop-trigger={""}
+              tag={"div"}
             >
               <Image
-                loading="lazy"
-                width="16"
-                height="auto"
-                alt="Globe"
-                src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b939f1b69f5f0b72800_globe-hemisphere.webp"
+                alt={"Globe"}
+                height={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b939f1b69f5f0b72800_globe-hemisphere.webp"
+                }
+                width={"16"}
               />
               <Block
                 className={_utils.cx(_styles, "drop-text", _activeStyleVariant)}
-                tag="div"
+                tag={"div"}
               >
                 {"Where to go?"}
               </Block>
@@ -91,10 +83,10 @@ export function FilterComp({
                 "input-droplist--wrapper",
                 _activeStyleVariant
               )}
-              tag="div"
-              drop-wrapper=""
+              drop-wrapper={""}
+              tag={"div"}
             >
-              <NotSupported _atom="DynamoWrapper" />
+              <NotSupported _atom={"Collection List"} />
             </Block>
           </Block>
           <Block
@@ -104,16 +96,11 @@ export function FilterComp({
               "guest",
               _activeStyleVariant
             )}
-            id={_utils.cx(
-              _styles,
-              "w-node-be9b0d29-0555-bc0e-43f3-0135ba5eb202-ba5eb1f0"
-            )}
-            tag="div"
+            tag={"div"}
           >
             <DOM
               className={_utils.cx(_styles, "sub-btn", _activeStyleVariant)}
-              tag="button"
-              slot=""
+              tag={"button"}
             >
               <Block
                 className={_utils.cx(
@@ -121,7 +108,7 @@ export function FilterComp({
                   "text-block-2",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               >
                 {"-"}
               </Block>
@@ -133,36 +120,37 @@ export function FilterComp({
                 "guest",
                 _activeStyleVariant
               )}
-              tag="div"
+              tag={"div"}
             >
               <Image
-                loading="lazy"
-                width="16"
-                height="auto"
-                alt="Users group"
-                src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b93a147aa90dbf0dc90_users-group.webp"
+                alt={"Users group"}
+                height={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b93a147aa90dbf0dc90_users-group.webp"
+                }
+                width={"16"}
               />
               <FormTextInput
+                autoFocus={false}
                 className={_utils.cx(
                   _styles,
                   "numguest-input",
                   _activeStyleVariant
                 )}
-                autoFocus={false}
-                maxLength={256}
-                name="field-2"
-                data-name="Field 2"
-                placeholder="How big is your group?"
-                type="text"
+                data-name={"Field 2"}
                 disabled={false}
+                id={_utils.cx(_styles, "field-2")}
+                maxLength={256}
+                name={"field-2"}
+                placeholder={"How big is your group?"}
                 required={true}
-                id="field-2"
+                type={"text"}
               />
             </Block>
             <DOM
               className={_utils.cx(_styles, "add-btn", _activeStyleVariant)}
-              tag="button"
-              slot=""
+              tag={"button"}
             >
               <Block
                 className={_utils.cx(
@@ -170,7 +158,7 @@ export function FilterComp({
                   "text-block",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               >
                 {"+"}
               </Block>
@@ -183,28 +171,26 @@ export function FilterComp({
               "lst",
               _activeStyleVariant
             )}
-            id={_utils.cx(
-              _styles,
-              "w-node-be9b0d29-0555-bc0e-43f3-0135ba5eb20c-ba5eb1f0"
-            )}
-            tag="div"
-            filter--container=""
+            filter--container={""}
+            tag={"div"}
           >
             <Block
               className={_utils.cx(_styles, "d-flx", _activeStyleVariant)}
-              tag="div"
-              drop-trigger=""
+              drop-trigger={""}
+              tag={"div"}
             >
               <Image
-                loading="lazy"
-                width="16"
-                height="auto"
-                alt=""
-                src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67b3576e516402875e3eecf1_mynaui_grid.webp"
+                alt={""}
+                height={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67b3576e516402875e3eecf1_mynaui_grid.webp"
+                }
+                width={"16"}
               />
               <Block
                 className={_utils.cx(_styles, "drop-text", _activeStyleVariant)}
-                tag="div"
+                tag={"div"}
               >
                 {"Select staying category"}
               </Block>
@@ -215,10 +201,10 @@ export function FilterComp({
                 "input-droplist--wrapper",
                 _activeStyleVariant
               )}
-              tag="div"
-              drop-wrapper=""
+              drop-wrapper={""}
+              tag={"div"}
             >
-              <NotSupported _atom="DynamoWrapper" />
+              <NotSupported _atom={"Collection List"} />
             </Block>
           </Block>
           {inputBedroomVisibility ? (
@@ -229,16 +215,11 @@ export function FilterComp({
                 "bedrooms",
                 _activeStyleVariant
               )}
-              id={_utils.cx(
-                _styles,
-                "w-node-_52dd0ca6-a27d-0876-9824-1b351a8a6345-ba5eb1f0"
-              )}
-              tag="div"
+              tag={"div"}
             >
               <DOM
                 className={_utils.cx(_styles, "sub-btn", _activeStyleVariant)}
-                tag="button"
-                slot=""
+                tag={"button"}
               >
                 <Block
                   className={_utils.cx(
@@ -246,7 +227,7 @@ export function FilterComp({
                     "text-block-2",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"-"}
                 </Block>
@@ -258,36 +239,37 @@ export function FilterComp({
                   "guest",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               >
                 <Image
-                  loading="lazy"
-                  width="16"
-                  height="auto"
-                  alt=""
-                  src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67b3576ecc5be3934af0e91a_material-symbols-light_bed-outline-rounded.webp"
+                  alt={""}
+                  height={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67b3576ecc5be3934af0e91a_material-symbols-light_bed-outline-rounded.webp"
+                  }
+                  width={"16"}
                 />
                 <FormTextInput
+                  autoFocus={false}
                   className={_utils.cx(
                     _styles,
                     "numguest-input",
                     _activeStyleVariant
                   )}
-                  autoFocus={false}
-                  maxLength={256}
-                  name="field-2"
-                  data-name="Field 2"
-                  placeholder="Bedrooms"
-                  type="text"
+                  data-name={"Field 2"}
                   disabled={false}
+                  id={_utils.cx(_styles, "field-2")}
+                  maxLength={256}
+                  name={"field-2"}
+                  placeholder={"Bedrooms"}
                   required={true}
-                  id="field-2"
+                  type={"text"}
                 />
               </Block>
               <DOM
                 className={_utils.cx(_styles, "add-btn", _activeStyleVariant)}
-                tag="button"
-                slot=""
+                tag={"button"}
               >
                 <Block
                   className={_utils.cx(
@@ -295,7 +277,7 @@ export function FilterComp({
                     "text-block",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"+"}
                 </Block>
@@ -310,23 +292,21 @@ export function FilterComp({
                 "lst",
                 _activeStyleVariant
               )}
-              id={_utils.cx(
-                _styles,
-                "w-node-_58ff71ed-1482-25ac-a68f-8598d02a0388-ba5eb1f0"
-              )}
-              tag="div"
+              tag={"div"}
             >
               <Block
                 className={_utils.cx(_styles, "d-flx", _activeStyleVariant)}
-                tag="div"
-                drop-trigger=""
+                drop-trigger={""}
+                tag={"div"}
               >
                 <Image
-                  loading="lazy"
-                  width="16"
-                  height="auto"
-                  alt=""
-                  src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67b3576eccafbbb17b95e35b_mage_dollar.webp"
+                  alt={""}
+                  height={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67b3576eccafbbb17b95e35b_mage_dollar.webp"
+                  }
+                  width={"16"}
                 />
                 <Block
                   className={_utils.cx(
@@ -334,7 +314,7 @@ export function FilterComp({
                     "drop-text",
                     _activeStyleVariant
                   )}
-                  tag="div"
+                  tag={"div"}
                 >
                   {"Price"}
                 </Block>
@@ -345,31 +325,28 @@ export function FilterComp({
                   "input-droplist--wrapper",
                   _activeStyleVariant
                 )}
-                tag="div"
-                drop-wrapper=""
+                drop-wrapper={""}
+                tag={"div"}
               >
-                <NotSupported _atom="DynamoWrapper" />
+                <NotSupported _atom={"Collection List"} />
               </Block>
             </Block>
           ) : null}
           {btnLinkVisibility ? (
             <Link
-              className={_utils.cx(_styles, "btn--link", _activeStyleVariant)}
-              id={_utils.cx(
-                _styles,
-                "w-node-f0f03f99-267a-647f-19ba-c366cd606ffd-ba5eb1f0"
-              )}
+              block={"inline"}
               button={false}
-              block="inline"
+              className={_utils.cx(_styles, "btn--link", _activeStyleVariant)}
               options={{
                 href: "#",
               }}
             >
-              <Block tag="div">{"Search"}</Block>
+              <Block tag={"div"}>{"Search"}</Block>
               <HtmlEmbed
                 className={_utils.cx(_styles, "icon-em", _activeStyleVariant)}
-                content=""
-                value="%3Csvg%20width%3D%221.5rem%22%20height%3D%221.5rem%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M3%2012.013L20.789%2012M14.012%2019L21%2012L14.012%205%22%20stroke%3D%22white%22%20stroke-width%3D%221.5%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E"
+                content={
+                  '<svg width="1.5rem" height="1.5rem" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M3 12.013L20.789 12M14.012 19L21 12L14.012 5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>\n</svg>'
+                }
               />
             </Link>
           ) : null}
@@ -382,19 +359,19 @@ export function FilterComp({
               "center",
               _activeStyleVariant
             )}
-            tag="div"
+            tag={"div"}
           >
-            <NotSupported _atom="DynamoWrapper" />
+            <NotSupported _atom={"Collection List"} />
             <Link
+              block={"inline"}
+              button={false}
               className={_utils.cx(
                 _styles,
                 "link-block",
                 "filter--link",
                 _activeStyleVariant
               )}
-              button={false}
-              fs-cmsfilter-element="clear"
-              block="inline"
+              fs-cmsfilter-element={"clear"}
               options={{
                 href: "#",
               }}
@@ -405,17 +382,18 @@ export function FilterComp({
                   "filter-icon",
                   _activeStyleVariant
                 )}
-                content=""
-                value="%3Csvg%20width%3D%221rem%22%20height%3D%221rem%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Cpath%20d%3D%22M14.1673%208.00009H5.93065M3.02332%208.00009H1.83398M3.02332%208.00009C3.02332%207.61464%203.17644%207.24498%203.44899%206.97243C3.72154%206.69988%204.0912%206.54676%204.47665%206.54676C4.8621%206.54676%205.23176%206.69988%205.50431%206.97243C5.77687%207.24498%205.92998%207.61464%205.92998%208.00009C5.92998%208.38554%205.77687%208.7552%205.50431%209.02775C5.23176%209.3003%204.8621%209.45342%204.47665%209.45342C4.0912%209.45342%203.72154%209.3003%203.44899%209.02775C3.17644%208.7552%203.02332%208.38554%203.02332%208.00009ZM14.1673%2012.4048H10.3353M10.3353%2012.4048C10.3353%2012.7903%2010.1818%2013.1604%209.90921%2013.433C9.6366%2013.7056%209.26685%2013.8588%208.88132%2013.8588C8.49587%2013.8588%208.12621%2013.705%207.85366%2013.4324C7.5811%2013.1599%207.42798%2012.7902%207.42798%2012.4048M10.3353%2012.4048C10.3353%2012.0192%2010.1818%2011.6498%209.90921%2011.3772C9.6366%2011.1046%209.26685%2010.9514%208.88132%2010.9514C8.49587%2010.9514%208.12621%2011.1045%207.85366%2011.3771C7.5811%2011.6496%207.42798%2012.0193%207.42798%2012.4048M7.42798%2012.4048H1.83398M14.1673%203.59542H12.0973M9.18998%203.59542H1.83398M9.18998%203.59542C9.18998%203.20998%209.3431%202.84031%209.61566%202.56776C9.88821%202.29521%2010.2579%202.14209%2010.6433%202.14209C10.8342%202.14209%2011.0232%202.17968%2011.1995%202.25272C11.3758%202.32576%2011.536%202.43281%2011.671%202.56776C11.8059%202.70272%2011.913%202.86293%2011.986%203.03926C12.0591%203.21558%2012.0966%203.40457%2012.0966%203.59542C12.0966%203.78628%2012.0591%203.97526%2011.986%204.15159C11.913%204.32792%2011.8059%204.48813%2011.671%204.62308C11.536%204.75804%2011.3758%204.86509%2011.1995%204.93813C11.0232%205.01117%2010.8342%205.04876%2010.6433%205.04876C10.2579%205.04876%209.88821%204.89564%209.61566%204.62308C9.3431%204.35053%209.18998%203.98087%209.18998%203.59542Z%22%20stroke%3D%22%23808080%22%20stroke-width%3D%221.2%22%20stroke-miterlimit%3D%2210%22%20stroke-linecap%3D%22round%22%2F%3E%0A%3C%2Fsvg%3E"
+                content={
+                  '<svg width="1rem" height="1rem" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">\n<path d="M14.1673 8.00009H5.93065M3.02332 8.00009H1.83398M3.02332 8.00009C3.02332 7.61464 3.17644 7.24498 3.44899 6.97243C3.72154 6.69988 4.0912 6.54676 4.47665 6.54676C4.8621 6.54676 5.23176 6.69988 5.50431 6.97243C5.77687 7.24498 5.92998 7.61464 5.92998 8.00009C5.92998 8.38554 5.77687 8.7552 5.50431 9.02775C5.23176 9.3003 4.8621 9.45342 4.47665 9.45342C4.0912 9.45342 3.72154 9.3003 3.44899 9.02775C3.17644 8.7552 3.02332 8.38554 3.02332 8.00009ZM14.1673 12.4048H10.3353M10.3353 12.4048C10.3353 12.7903 10.1818 13.1604 9.90921 13.433C9.6366 13.7056 9.26685 13.8588 8.88132 13.8588C8.49587 13.8588 8.12621 13.705 7.85366 13.4324C7.5811 13.1599 7.42798 12.7902 7.42798 12.4048M10.3353 12.4048C10.3353 12.0192 10.1818 11.6498 9.90921 11.3772C9.6366 11.1046 9.26685 10.9514 8.88132 10.9514C8.49587 10.9514 8.12621 11.1045 7.85366 11.3771C7.5811 11.6496 7.42798 12.0193 7.42798 12.4048M7.42798 12.4048H1.83398M14.1673 3.59542H12.0973M9.18998 3.59542H1.83398M9.18998 3.59542C9.18998 3.20998 9.3431 2.84031 9.61566 2.56776C9.88821 2.29521 10.2579 2.14209 10.6433 2.14209C10.8342 2.14209 11.0232 2.17968 11.1995 2.25272C11.3758 2.32576 11.536 2.43281 11.671 2.56776C11.8059 2.70272 11.913 2.86293 11.986 3.03926C12.0591 3.21558 12.0966 3.40457 12.0966 3.59542C12.0966 3.78628 12.0591 3.97526 11.986 4.15159C11.913 4.32792 11.8059 4.48813 11.671 4.62308C11.536 4.75804 11.3758 4.86509 11.1995 4.93813C11.0232 5.01117 10.8342 5.04876 10.6433 5.04876C10.2579 5.04876 9.88821 4.89564 9.61566 4.62308C9.3431 4.35053 9.18998 3.98087 9.18998 3.59542Z" stroke="#808080" stroke-width="1.2" stroke-miterlimit="10" stroke-linecap="round"/>\n</svg>'
+                }
               />
-              <Block tag="div">{"Clear all filter"}</Block>
+              <Block tag={"div"}>{"Clear all filter"}</Block>
               <Block
                 className={_utils.cx(
                   _styles,
                   "filter-num",
                   _activeStyleVariant
                 )}
-                tag="div"
+                tag={"div"}
               >
                 {"2"}
               </Block>
@@ -424,19 +402,19 @@ export function FilterComp({
         ) : null}
         <Block
           className={_utils.cx(_styles, "pop-up--filter", _activeStyleVariant)}
-          tag="div"
+          tag={"div"}
         />
       </FormForm>
       <FormSuccessMessage>
-        <Block tag="div">
+        <Block tag={"div"}>
           {"Thank you! Your submission has been received!"}
         </Block>
       </FormSuccessMessage>
       <FormErrorMessage>
-        <Block tag="div">
+        <Block tag={"div"}>
           {"Oops! Something went wrong while submitting the form."}
         </Block>
       </FormErrorMessage>
-    </_Component>
+    </FormWrapper>
   );
 }

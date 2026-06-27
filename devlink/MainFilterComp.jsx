@@ -1,215 +1,203 @@
 "use client";
 import React from "react";
-import FormWrapper from "./_Builtin/FormWrapper";
-import FormForm from "./_Builtin/FormForm";
-import Block from "./_Builtin/Block";
-import Image from "./_Builtin/Image";
-import FormTextInput from "./_Builtin/FormTextInput";
-import List from "./_Builtin/List";
-import FormButton from "./_Builtin/FormButton";
-import FormSuccessMessage from "./_Builtin/FormSuccessMessage";
-import FormErrorMessage from "./_Builtin/FormErrorMessage";
-import * as _utils from "./utils";
-import _styles from "./MainFilterComp.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import FormButton from "./webflow_modules/Form/components/FormButton";
+import FormErrorMessage from "./webflow_modules/Form/components/FormErrorMessage";
+import FormForm from "./webflow_modules/Form/components/FormForm";
+import FormSuccessMessage from "./webflow_modules/Form/components/FormSuccessMessage";
+import FormTextInput from "./webflow_modules/Form/components/FormTextInput";
+import FormWrapper from "./webflow_modules/Form/components/FormWrapper";
+import Image from "./webflow_modules/Basic/components/Image";
+import List from "./webflow_modules/Basic/components/List";
 
-export function MainFilterComp({ as: _Component = FormWrapper }) {
+export function MainFilterComp({}) {
   return (
-    <_Component className={_utils.cx(_styles, "filter--block")}>
+    <FormWrapper className={_utils.cx(_styles, "filter--block")}>
       <FormForm
         className={_utils.cx(_styles, "form")}
-        name="wf-form-firstFilterForm"
-        data-name="firstFilterForm"
-        method="get"
-        fs-list-element="filters"
-        fs-list-filteron="submit"
-        id="wf-form-firstFilterForm"
+        data-name={"firstFilterForm"}
+        fs-list-element={"filters"}
+        fs-list-filteron={"submit"}
+        id={_utils.cx(_styles, "wf-form-firstFilterForm")}
+        method={"get"}
+        name={"wf-form-firstFilterForm"}
       >
         <Block
           className={_utils.cx(_styles, "filter--form", "_4-col")}
-          id={_utils.cx(
-            _styles,
-            "w-node-a9eabda6-505b-dcd9-139b-b095c79c99ae-c79c99ac"
-          )}
-          tag="div"
+          tag={"div"}
         >
           <Block
             className={_utils.cx(_styles, "event-type--wrap", "brd-right")}
-            id={_utils.cx(
-              _styles,
-              "w-node-_4e8a5b77-29d6-4c0c-fb96-3f11a0bb5bdc-c79c99ac"
-            )}
-            tag="div"
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "from-flx")} tag="div">
+            <Block className={_utils.cx(_styles, "from-flx")} tag={"div"}>
               <Block
                 className={_utils.cx(_styles, "input-icon--wrap")}
-                tag="div"
+                tag={"div"}
               >
                 <Image
+                  alt={""}
                   className={_utils.cx(_styles, "input--icon", "img-full")}
-                  width="13.5"
-                  height="auto"
-                  loading="lazy"
-                  alt=""
-                  src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/68065012c87b043021ec9c77_Vector%20(3).webp"
+                  height={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/68065012c87b043021ec9c77_Vector%20(3).webp"
+                  }
+                  width={"13.5"}
                 />
               </Block>
               <FormTextInput
-                className={_utils.cx(_styles, "filter--input", "ev-ty")}
-                name="eventTyoe"
-                maxLength={256}
-                data-name="eventTyoe"
-                placeholder="Event Type"
-                disabled={false}
-                type="text"
-                required={false}
                 autoFocus={false}
-                fs-list-field="event-type"
-                id="eventType"
+                className={_utils.cx(_styles, "filter--input", "ev-ty")}
+                data-name={"eventTyoe"}
+                disabled={false}
+                fs-list-field={"event-type"}
+                id={_utils.cx(_styles, "eventType")}
+                maxLength={256}
+                name={"eventTyoe"}
+                placeholder={"Event Type"}
+                required={false}
+                type={"text"}
               />
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-list--wrapper")}
-              tag="div"
-              filter-item--wrap=""
-              id="eventType_List_Wrap"
+              filter-item--wrap={""}
+              id={_utils.cx(_styles, "eventType_List_Wrap")}
+              tag={"div"}
             >
               <List
                 className={_utils.cx(_styles, "input-filter-list--wrap")}
-                tag="ul"
-                input-filter--list=""
-                id="eventType_Input_Filter_List"
+                id={_utils.cx(_styles, "eventType_Input_Filter_List")}
+                input-filter--list={""}
+                tag={"ul"}
                 unstyled={true}
               />
             </Block>
           </Block>
           <Block
             className={_utils.cx(_styles, "locationinput", "brd-right")}
-            id={_utils.cx(
-              _styles,
-              "w-node-ac4aa1ec-60ca-5aa3-9542-9b2ec9596e0c-c79c99ac"
-            )}
-            tag="div"
+            tag={"div"}
           >
-            <Block className={_utils.cx(_styles, "from-flx")} tag="div">
+            <Block className={_utils.cx(_styles, "from-flx")} tag={"div"}>
               <Block
                 className={_utils.cx(_styles, "input-icon--wrap")}
-                tag="div"
+                tag={"div"}
               >
                 <Image
+                  alt={"Globe"}
                   className={_utils.cx(_styles, "input--icon", "img-full")}
-                  width="13.5"
-                  height="auto"
-                  loading="lazy"
-                  alt="Globe"
-                  src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b939f1b69f5f0b72800_globe-hemisphere.webp"
+                  height={"auto"}
+                  loading={"lazy"}
+                  src={
+                    "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b939f1b69f5f0b72800_globe-hemisphere.webp"
+                  }
+                  width={"13.5"}
                 />
               </Block>
               <FormTextInput
-                className={_utils.cx(_styles, "filter--input", "ev-ty")}
-                name="location"
-                maxLength={256}
-                data-name="location"
-                placeholder="Location"
-                disabled={false}
-                type="text"
-                required={false}
                 autoFocus={false}
-                fs-list-field="where"
-                field="area-location"
-                id="location"
+                className={_utils.cx(_styles, "filter--input", "ev-ty")}
+                data-name={"location"}
+                disabled={false}
+                // @ts-ignore - User-defined custom attribute(s)
+                field={"area-location"}
+                fs-list-field={"where"}
+                id={_utils.cx(_styles, "location")}
+                maxLength={256}
+                name={"location"}
+                placeholder={"Location"}
+                required={false}
+                type={"text"}
               />
             </Block>
             <Block
               className={_utils.cx(_styles, "filter-list--wrapper")}
-              tag="div"
-              location_list_wrap=""
-              id="location_List_Wrap"
+              id={_utils.cx(_styles, "location_List_Wrap")}
+              // @ts-ignore - User-defined custom attribute(s)
+              location_list_wrap={""}
+              tag={"div"}
             >
               <List
                 className={_utils.cx(_styles, "input-filter-list--wrap")}
-                tag="ul"
-                input-filter--list=""
-                id="loc_Input_Filter_List"
+                id={_utils.cx(_styles, "loc_Input_Filter_List")}
+                input-filter--list={""}
+                tag={"ul"}
                 unstyled={true}
               />
             </Block>
           </Block>
           <Block
             className={_utils.cx(_styles, "input--wrapper", "lst")}
-            id={_utils.cx(
-              _styles,
-              "w-node-a9eabda6-505b-dcd9-139b-b095c79c99c9-c79c99ac"
-            )}
-            tag="div"
-            filter--container=""
+            filter--container={""}
+            tag={"div"}
           >
             <Block
               className={_utils.cx(_styles, "d-flx", "no-gp")}
-              tag="div"
-              drop-trigger=""
+              drop-trigger={""}
+              tag={"div"}
             >
               <Image
-                width="16"
-                height="auto"
-                loading="lazy"
-                alt="Users group"
-                src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b93a147aa90dbf0dc90_users-group.webp"
+                alt={"Users group"}
+                height={"auto"}
+                loading={"lazy"}
+                src={
+                  "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/67a39b93a147aa90dbf0dc90_users-group.webp"
+                }
+                width={"16"}
               />
               <FormTextInput
+                autoFocus={false}
                 className={_utils.cx(_styles, "filter--input", "from")}
-                name="field-4"
-                maxLength={256}
-                data-name="Field 4"
-                placeholder="Group Size"
+                data-name={"Field 4"}
                 disabled={false}
-                type="text"
+                fs-list-field={"group-num"}
+                fs-list-fieldtype={"number"}
+                fs-list-operator={"greater-equal"}
+                id={_utils.cx(_styles, "field-4")}
+                maxLength={256}
+                name={"field-4"}
+                placeholder={"Group Size"}
                 required={false}
-                autoFocus={false}
-                fs-list-field="group-num"
-                fs-list-operator="greater-equal"
-                fs-list-fieldtype="number"
-                id="field-4"
+                type={"text"}
               />
               <FormTextInput
-                className={_utils.cx(_styles, "filter--input", "hide-input")}
-                name="field-4"
-                maxLength={256}
-                data-name="Field 4"
-                placeholder="How big is your group?"
-                disabled={false}
-                type="text"
-                required={false}
                 autoFocus={false}
-                fs-list-field="group-num"
-                fs-list-operator="less-equal"
-                fs-list-fieldtype="number"
-                id="field-4"
+                className={_utils.cx(_styles, "filter--input", "hide-input")}
+                data-name={"Field 4"}
+                disabled={false}
+                fs-list-field={"group-num"}
+                fs-list-fieldtype={"number"}
+                fs-list-operator={"less-equal"}
+                id={_utils.cx(_styles, "field-4")}
+                maxLength={256}
+                name={"field-4"}
+                placeholder={"How big is your group?"}
+                required={false}
+                type={"text"}
               />
             </Block>
           </Block>
           <FormButton
             className={_utils.cx(_styles, "filter-search")}
-            id={_utils.cx(
-              _styles,
-              "w-node-c011051d-47df-19a9-4fb4-892882bfbecf-c79c99ac"
-            )}
-            type="submit"
-            value="Search"
-            data-wait="Please wait..."
+            data-wait={"Please wait..."}
+            type={"submit"}
+            value={"Search"}
           />
         </Block>
       </FormForm>
       <FormSuccessMessage>
-        <Block tag="div">
+        <Block tag={"div"}>
           {"Thank you! Your submission has been received!"}
         </Block>
       </FormSuccessMessage>
       <FormErrorMessage>
-        <Block tag="div">
+        <Block tag={"div"}>
           {"Oops! Something went wrong while submitting the form."}
         </Block>
       </FormErrorMessage>
-    </_Component>
+    </FormWrapper>
   );
 }

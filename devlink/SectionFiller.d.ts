@@ -1,8 +1,7 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function SectionFiller(props: {
-  as?: React.ElementType;
-  contentSectionName?: React.ReactNode;
   contentDescription?: React.ReactNode;
+  contentSectionName?: React.ReactNode;
 }): React.JSX.Element;

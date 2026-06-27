@@ -1,5 +1,2 @@
 import * as React from "react";
-
-declare function PropListingComp(props: {
-  as?: React.ElementType;
-}): React.JSX.Element;
+declare function PropListingComp(props: {}): React.JSX.Element;

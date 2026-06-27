@@ -1,0 +1,23 @@
+---
+import Layout from '../layouts/Layout.astro';
+import {ProjectsApp} from '../components/projects/ProjectsApp';
+---
+
+<Layout>
+    <div class="content-area">
+        <ProjectsApp client:load/>
+    </div>
+</Layout>
+
+<style>
+    .content-area {
+        padding-top: 8rem;
+        min-height: 100vh;
+    }
+
+    @media (max-width: 768px) {
+        .content-area {
+            padding-top: 6rem;
+        }
+    }
+</style>

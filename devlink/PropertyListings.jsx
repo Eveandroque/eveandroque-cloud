@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import NotSupported from "./_Builtin/NotSupported";
+import NotSupported from "./webflow_modules/Builtin/components/NotSupported";
 
-export function PropertyListings({ as: _Component = NotSupported }) {
-  return <_Component _atom="CodeIsland" />;
+export function PropertyListings({}) {
+  return <NotSupported _atom={"Code Island"} />;
 }

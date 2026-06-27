@@ -1,15 +1,15 @@
 "use client";
 import React from "react";
-import Block from "./_Builtin/Block";
-import Image from "./_Builtin/Image";
-import Heading from "./_Builtin/Heading";
-import Span from "./_Builtin/Span";
-import Paragraph from "./_Builtin/Paragraph";
-import Link from "./_Builtin/Link";
-import HtmlEmbed from "./_Builtin/HtmlEmbed";
-import * as _utils from "./utils";
-import _styles from "./SimpleSingleColumnedSection.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Heading from "./webflow_modules/Basic/components/Heading";
+import HtmlEmbed from "./webflow_modules/Embed/components/HtmlEmbed";
+import Image from "./webflow_modules/Basic/components/Image";
+import Link from "./webflow_modules/Basic/components/Link";
+import Paragraph from "./webflow_modules/Basic/components/Paragraph";
+import Span from "./webflow_modules/Basic/components/Span";
 
-export function SimpleSingleColumnedSection({ as: _Component = Block }) {
-  return;
+export function SimpleSingleColumnedSection({}) {
+  return null;
 }

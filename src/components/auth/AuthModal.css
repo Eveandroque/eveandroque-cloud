@@ -1,0 +1,222 @@
+/* ─── Auth Modal ─────────────────────────────────────────────────────────────── */
+@keyframes modal-fade-up {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes auth-modal-center-in {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -48%);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%);
+    }
+}
+
+.auth-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.45);
+    z-index: 900;
+    animation: modal-fade-up 0.2s ease;
+}
+
+.auth-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(420px, calc(100vw - 32px));
+    background: #fff;
+    border-radius: 16px;
+    z-index: 1000;
+    animation: auth-modal-center-in 0.2s ease;
+    overflow: hidden;
+    font-family: 'DM Sans', sans-serif;
+}
+
+.auth-modal__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.auth_modal__titlewrap {
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    align-items: baseline;
+}
+
+.auth-modal__subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    color: #666;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.auth-modal__title {
+    font-size: 20px;
+    font-weight: 600;
+    color: #111;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.auth-modal__close {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #999;
+    padding: 4px;
+    display: flex;
+    border-radius: 4px;
+    transition: color 0.15s;
+}
+
+.auth-modal__close:hover {
+    color: #111;
+}
+
+.auth-modal__body {
+    padding: 20px;
+}
+
+.auth-modal__google {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 12px;
+    background: #fff;
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    color: #333;
+    cursor: pointer;
+    transition: border-color 0.15s, background 0.15s;
+}
+
+.auth-modal__google:hover {
+    border-color: #999;
+    background: #fafafa;
+}
+
+.auth-modal__divider {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 20px 0;
+    color: #bbb;
+    font-size: 12px;
+}
+
+.auth-modal__divider::before,
+.auth-modal__divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: #e8e8e8;
+}
+
+.auth-modal__label {
+    display: block;
+    font-size: 13px;
+    font-weight: 500;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.auth-modal__input {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #d8d8d8;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    outline: none;
+    box-sizing: border-box;
+    transition: border-color 0.15s;
+}
+
+.auth-modal__input:focus {
+    border-color: #111;
+}
+
+.auth-modal__error {
+    color: #dc3545;
+    font-size: 13px;
+    margin: 8px 0 0;
+}
+
+.auth-modal__submit {
+    display: block;
+    width: 100%;
+    padding: 13px;
+    margin-top: 14px;
+    background: #111;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.auth-modal__submit:hover:not(:disabled) {
+    background: #333;
+}
+
+.auth-modal__submit:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.auth-modal__success {
+    text-align: center;
+}
+
+.auth-modal__success-icon {
+    font-size: 40px;
+    margin-bottom: 12px;
+}
+
+.auth-modal__success h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111;
+    margin: 0 0 8px;
+}
+
+.auth-modal__success p {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.auth-modal__logo {
+    display: flex;
+    border-radius: 8px;
+    align-items: center;
+    justify-items: center;
+    padding: 12px;
+    background: #ebf2f8;
+}

@@ -1,12 +1,11 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function Subheading(props: {
-  as?: React.ElementType;
+  contentDate?: React.ReactNode;
   contentText?: React.ReactNode;
   mediaIcon?: Types.Asset.Image;
-  visibilityIconDisplay?: Types.Visibility.VisibilityConditions;
-  visibilityDateVisibility?: Types.Visibility.VisibilityConditions;
   variant?: "Base" | "Dark";
-  contentDate?: React.ReactNode;
+  visibilityDateVisibility?: Types.Visibility.VisibilityConditions;
+  visibilityIconDisplay?: Types.Visibility.VisibilityConditions;
 }): React.JSX.Element;

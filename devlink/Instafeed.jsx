@@ -1,23 +1,23 @@
 "use client";
 import React from "react";
-import Section from "./_Builtin/Section";
-import Block from "./_Builtin/Block";
-import Heading from "./_Builtin/Heading";
-import Span from "./_Builtin/Span";
-import Image from "./_Builtin/Image";
-import NotSupported from "./_Builtin/NotSupported";
-import Link from "./_Builtin/Link";
-import * as _utils from "./utils";
-import _styles from "./Instafeed.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Heading from "./webflow_modules/Basic/components/Heading";
+import Image from "./webflow_modules/Basic/components/Image";
+import Link from "./webflow_modules/Basic/components/Link";
+import NotSupported from "./webflow_modules/Builtin/components/NotSupported";
+import Section from "./webflow_modules/Layout/components/Section";
+import Span from "./webflow_modules/Basic/components/Span";
 
-export function Instafeed({ as: _Component = Section }) {
+export function Instafeed({}) {
   return (
-    <_Component
+    <Section
       className={_utils.cx(_styles, "component_instagram_section")}
       grid={{
         type: "section",
       }}
-      tag="section"
+      tag={"section"}
     />
   );
 }

@@ -1,11 +1,10 @@
 import * as React from "react";
-import * as Types from "./types";
+import * as Types from "./webflow_modules/types";
 
 declare function Team(props: {
-  as?: React.ElementType;
   componentTeamList?: React.ReactNode;
-  displaySettingsPlaceholderVisibility?: Types.Visibility.VisibilityConditions;
-  contentSubheading?: React.ReactNode;
-  contentHeading?: React.ReactNode;
   contentDescription?: React.ReactNode;
+  contentHeading?: React.ReactNode;
+  contentSubheading?: React.ReactNode;
+  displaySettingsPlaceholderVisibility?: Types.Visibility.VisibilityConditions;
 }): React.JSX.Element;

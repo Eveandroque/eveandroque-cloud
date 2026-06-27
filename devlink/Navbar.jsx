@@ -1,21 +1,20 @@
 "use client";
 import React from "react";
-import NavbarWrapper from "./_Builtin/NavbarWrapper";
-import Block from "./_Builtin/Block";
-import NavbarBrand from "./_Builtin/NavbarBrand";
-import Image from "./_Builtin/Image";
-import NavbarMenu from "./_Builtin/NavbarMenu";
-import NavbarLink from "./_Builtin/NavbarLink";
-import NavbarButton from "./_Builtin/NavbarButton";
-import Icon from "./_Builtin/Icon";
-import * as _utils from "./utils";
-import _styles from "./Navbar.module.css";
+import _styles from "./css/classes.module.css";
+import * as _utils from "./webflow_modules/utils";
+import Block from "./webflow_modules/Basic/components/Block";
+import Icon from "./webflow_modules/Icon/components/Icon";
+import Image from "./webflow_modules/Basic/components/Image";
+import NavbarBrand from "./webflow_modules/Navbar/components/NavbarBrand";
+import NavbarButton from "./webflow_modules/Navbar/components/NavbarButton";
+import NavbarLink from "./webflow_modules/Navbar/components/NavbarLink";
+import NavbarMenu from "./webflow_modules/Navbar/components/NavbarMenu";
+import NavbarWrapper from "./webflow_modules/Navbar/components/NavbarWrapper";
 
-export function Navbar({ as: _Component = NavbarWrapper }) {
+export function Navbar({}) {
   return (
-    <_Component
+    <NavbarWrapper
       className={_utils.cx(_styles, "nav_component")}
-      tag="div"
       config={{
         animation: "default",
         collapse: "medium",
@@ -25,9 +24,10 @@ export function Navbar({ as: _Component = NavbarWrapper }) {
         easing2: "ease",
         noScroll: false,
       }}
+      tag={"div"}
     >
-      <Block className={_utils.cx(_styles, "padding-global")} tag="div">
-        <Block className={_utils.cx(_styles, "nav_container")} tag="div">
+      <Block className={_utils.cx(_styles, "padding-global")} tag={"div"}>
+        <Block className={_utils.cx(_styles, "nav_container")} tag={"div"}>
           <NavbarBrand
             className={_utils.cx(_styles, "nav_brand")}
             options={{
@@ -35,18 +35,20 @@ export function Navbar({ as: _Component = NavbarWrapper }) {
             }}
           >
             <Image
+              alt={""}
               className={_utils.cx(_styles, "nav_logo")}
-              loading="lazy"
-              width="auto"
-              height="auto"
-              alt=""
-              src="https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/678e68eef62edc01d0e5e270_client-first-logo-white.svg"
+              height={"auto"}
+              loading={"lazy"}
+              src={
+                "https://cdn.prod.website-files.com/678e68eef62edc01d0e5e1d7/678e68eef62edc01d0e5e270_client-first-logo-white.svg"
+              }
+              width={"auto"}
             />
           </NavbarBrand>
           <NavbarMenu
             className={_utils.cx(_styles, "nav_menu")}
-            tag="nav"
-            role="navigation"
+            role={"navigation"}
+            tag={"nav"}
           >
             <NavbarLink
               className={_utils.cx(_styles, "nav_menu_link")}
@@ -65,7 +67,10 @@ export function Navbar({ as: _Component = NavbarWrapper }) {
               {"About Finsweet"}
             </NavbarLink>
           </NavbarMenu>
-          <NavbarButton className={_utils.cx(_styles, "nav_button")} tag="div">
+          <NavbarButton
+            className={_utils.cx(_styles, "nav_button")}
+            tag={"div"}
+          >
             <Icon
               widget={{
                 type: "icon",
@@ -75,6 +80,6 @@ export function Navbar({ as: _Component = NavbarWrapper }) {
           </NavbarButton>
         </Block>
       </Block>
-    </_Component>
+    </NavbarWrapper>
   );
 }

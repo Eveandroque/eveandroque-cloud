@@ -9,6 +9,7 @@ import {PropertyInquiryForm} from './PropertyinquiryForm';
 import {AdditionalServices} from './AdditionalServices';
 import {PropertyMap} from './Propertymap';
 import {RelatedProperties} from './Relatedproperties';
+import {HeartButton} from "../projects/HeartButton.tsx";
 import type {PropertyDetail} from './types';
 import './property.css';
 
@@ -69,14 +70,14 @@ function PropertyAppInner({
     return (
         <div className="property-app">
 
-            {/* ── Gallery ── */}
+            {/* Gallery */}
             <PropertyGallery
                 thumbnail={property.thumbnail}
                 imageUrls={property.images}
                 name={property.name}
             />
 
-            {/* ── Header ── */}
+            {/* Header */}
             <div className="property-header">
                 <div className="property-header__col1">
                     <div className="property-header__main">
@@ -86,7 +87,12 @@ function PropertyAppInner({
                             {/*{property.address &&*/}
                             {/*    <span className="property-header__address">&nbsp;· {property.address}</span>}*/}
                         </div>
-                        <h1 className="property-header__name">{property.name}</h1>
+                        <div className="property-header__name-row">
+
+                            <h1 className="property-header__name">{property.name}</h1>
+                            <HeartButton propertyId={property.id} propertyThumbnail={property.thumbnail}
+                                         variant="detail"/>
+                        </div>
                         <div className="property-header__stats">
                             <div className="property-stat">
                                 <BedIcon/>
@@ -125,7 +131,7 @@ function PropertyAppInner({
                             </div>
                         )}
                     </div>
-                    {/* ── Tab Nav ── */}
+                    {/* Tab Nav */}
                     <div className="property-tabs">
                         <button
                             className={`property-tab${activeTab === 'overview' ? ' is-active' : ''}`}
@@ -141,7 +147,7 @@ function PropertyAppInner({
                         </button>
                     </div>
 
-                    {/* ── Overview Tab ── */}
+                    {/* Overview Tab */}
                     {activeTab === 'overview' && (
                         <div className="property-content">
 
@@ -187,7 +193,7 @@ function PropertyAppInner({
                         </div>
                     )}
 
-                    {/* ── Amenities Tab ── */}
+                    {/* Amenities Tab */}
                     {activeTab === 'amenities' && (
                         <div className="property-content">
                             <section className="property-amenities">
@@ -222,13 +228,13 @@ function PropertyAppInner({
                         </section>
                     )}
 
-                    {/* ── Additional Services ── */}
+                    {/* Additional Services */}
                     <AdditionalServices
                         selected={selectedServices}
                         onToggle={toggleService}
                     />
                 </div>
-                {/* ── Sticky Sidebar Inquiry Form ── */}
+                {/* Sticky Sidebar Inquiry Form */}
                 <aside className="property-header__sidebar">
                     <PropertyInquiryForm
                         propertyName={property.name}
@@ -240,7 +246,7 @@ function PropertyAppInner({
                 </aside>
             </div>
 
-            {/* ── Fillout Embed Form ── */}
+            {/* Fillout Embed Form */}
             <section className="property-fillout">
                 <div className="property-fillout__header">
                     <h2>
@@ -258,7 +264,7 @@ function PropertyAppInner({
                 />
             </section>
 
-            {/* ── Related Properties ── */}
+            {/* Related Properties */}
             <RelatedProperties
                 currentSlug={property.slug}
                 city={property.city}
@@ -269,7 +275,7 @@ function PropertyAppInner({
     );
 }
 
-// ─── Detail row ───────────────────────────────────────────────────────────────
+// Detail row
 
 function Detail({label, value}: { label: string; value: string }) {
     return (
@@ -280,7 +286,7 @@ function Detail({label, value}: { label: string; value: string }) {
     );
 }
 
-// ─── Icons ────────────────────────────────────────────────────────────────────
+// Icons
 
 const PinIcon = () => (
     <svg width="13" height="13" viewBox="0 0 14 14" fill="none">

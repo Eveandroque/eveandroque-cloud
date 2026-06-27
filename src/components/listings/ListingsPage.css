@@ -556,6 +556,7 @@
     justify-content: center;
     gap: 8px;
     margin-top: 56px;
+    margin-bottom: 24px;
 }
 
 .pagination-btn {
