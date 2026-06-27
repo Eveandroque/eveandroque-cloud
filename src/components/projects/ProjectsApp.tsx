@@ -15,6 +15,9 @@ export function ProjectsApp() {
     if (authLoading || isLoading) {
         return (
             <div className="projects-page">
+                <a href="/listings" className="projects-detail__back">
+                    <BackIcon/> All Listings
+                </a>
                 <div className="projects-page__header">
                     <h1 className="projects-page__title">Projects</h1>
                 </div>
