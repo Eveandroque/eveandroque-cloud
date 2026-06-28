@@ -27,6 +27,7 @@
 }
 
 .user-menu__login {
+    display: none;
     padding: 8px 20px;
     background: #111;
     color: #fff;
