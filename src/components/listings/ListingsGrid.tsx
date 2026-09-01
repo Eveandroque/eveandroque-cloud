@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import React, {useState, useRef} from 'react';
 import type {Property} from './types';
 import {HeartButton} from "../projects/HeartButton.tsx";
 
 // Skeleton Card
-
 export const SkeletonCard = () => (
     <div className="skeleton-card">
         <div className="skeleton-image"/>
@@ -68,10 +67,12 @@ export function PropertyCard({property, index}: PropertyCardProps) {
                         <BedIcon/>
                         <span>{property.bedrooms} Beds</span>
                     </div>
-                    <div className="property-card__meta-item">
-                        <GuestIcon/>
-                        <span>{property.maxGuests} guests</span>
-                    </div>
+                    {property.sqft ? (
+                        <div className="property-card__meta-item">
+                            <SqftIcon/>
+                            <span>{property.sqft.toLocaleString()} sqft</span>
+                        </div>
+                    ) : null}
                 </div>
             </div>
         </a>
@@ -104,7 +105,7 @@ export function ListingsGrid({
                                  hasMore
                              }: ListingsGridProps) {
     const totalPages = Math.ceil(total / pageSize);
-
+    
     if (isError) {
         return (
             <div className="listings-error">
@@ -206,6 +207,18 @@ const BathIcon = () => (
         <path
             d="M2 8H14V11C14 12.1 13.1 13 12 13H4C2.9 13 2 12.1 2 11V8ZM2 8V4C2 3.45 2.45 3 3 3V3C3.55 3 4 3.45 4 4V5.5"
             stroke="currentColor" strokeWidth="1.1" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+);
+
+const SqftIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+        <path
+            d="M3 3H13V13H3V3ZM3 6H13M6 3V13"
+            stroke="currentColor"
+            strokeWidth="1.1"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+        />
     </svg>
 );
 

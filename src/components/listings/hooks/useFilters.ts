@@ -16,6 +16,7 @@ export function useFilters() {
             rentalTypes: parseAsArrayOf(parseAsString).withDefault([]),
             city: parseAsString.withDefault(''),
             eventMaxCap: parseAsInteger,
+            q: parseAsString.withDefault(''),
 
             // Modal groups
             generalFilters: parseAsArrayOf(parseAsString).withDefault([]),
@@ -65,6 +66,10 @@ export function useFilters() {
         setFilters({eventMaxCap: eventMaxCap, page: 1});
     }, [setFilters]);
 
+    const setQ = useCallback((q: string) => {
+        setFilters({q: q.trim(), page: 1});
+    }, [setFilters]);
+
     const setPage = useCallback((page: number) => {
         setFilters({page});
     }, [setFilters]);
@@ -74,6 +79,7 @@ export function useFilters() {
             rentalTypes: [],
             city: '',
             eventMaxCap: null,
+            q: '',
             generalFilters: [],
             styles: [],
             searchAreas: [],
@@ -104,6 +110,7 @@ export function useFilters() {
         modalFilterCount > 0 ||
         filters.rentalTypes.length > 0 ||
         !!filters.city ||
+        !!filters.q ||
         filters.eventMaxCap !== null;
 
     return {
@@ -113,6 +120,7 @@ export function useFilters() {
         toggleRentalType,
         setCity,
         setEventMaxCap,
+        setQ,
         setPage,
         clearAll,
         modalFilterCount,
@@ -132,6 +140,7 @@ export function buildQueryString(filters: FilterState): string {
 
     setArr('rentalTypes', filters.rentalTypes);
     if (filters.eventMaxCap) p.set('eventMaxCap', String(filters.eventMaxCap));
+    if (filters.q.trim()) p.set('q', filters.q.trim());
     setArr('generalFilters', filters.generalFilters);
     setArr('styles', filters.styles);
     setArr('searchAreas', filters.searchAreas);

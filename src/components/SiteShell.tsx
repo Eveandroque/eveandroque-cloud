@@ -9,6 +9,7 @@ import {Footer} from '../../devlink/Footer';
 import {AuthListener} from './auth/AuthListener';
 import {AuthModal} from './auth/AuthModal';
 import {UserMenu} from './auth/UserMenu';
+import {FloatingSignInPrompt} from './auth/FloatingSignInPrompt';
 import {AddToProjectModal} from './projects/AddToProjectModal';
 
 interface SiteShellProps {
@@ -22,9 +23,10 @@ export function SiteShell({children}: SiteShellProps) {
             <UserMenu/>
             {children}
             <Footer/>
-            {/* Global listeners & modals — render nothing until needed */}
+            {/*Global listeners & modals — render nothing until needed */}
             <AuthListener/>
             <AuthModal/>
+            <FloatingSignInPrompt/>
             <AddToProjectModal/>
         </DevLinkProvider>
     );

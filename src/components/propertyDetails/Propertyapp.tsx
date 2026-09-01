@@ -105,7 +105,7 @@ function PropertyAppInner({
                             {property.maxGuests && (
                                 <div className="property-stat">
                                     <GuestIcon/>
-                                    <span>Up to {property.maxGuests} guests</span>
+                                    <span>Up to {property.filmMaxCap} crew</span>
                                 </div>
                             )}
                             {property.eventMaxCap && (
@@ -267,7 +267,6 @@ function PropertyAppInner({
             {/* Related Properties */}
             <RelatedProperties
                 currentSlug={property.slug}
-                city={property.city}
                 workerUrl={workerUrl}
             />
 

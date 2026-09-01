@@ -13,18 +13,19 @@ interface Property {
     bedrooms: number;
     bathrooms: number;
     maxGuests: number | null;
+    sqft?: number | null;
 }
 
 interface RelatedPropertiesProps {
     currentSlug: string;
-    city: string;
     workerUrl: string;
 }
 
-async function fetchRelated(workerUrl: string, city: string, currentSlug: string): Promise<Property[]> {
+async function fetchRelated(workerUrl: string, currentSlug: string): Promise<Property[]> {
     const res = await fetch(
-        `${workerUrl}/api/listings/cards?searchAreas=${encodeURIComponent(city)}&pageSize=5`
+        `${workerUrl}/api/listings/${encodeURIComponent(currentSlug)}/similar`
     );
+
     if (!res.ok) throw new Error('Failed to fetch related properties');
     const data = await res.json();
     // @ts-ignore
@@ -33,10 +34,10 @@ async function fetchRelated(workerUrl: string, city: string, currentSlug: string
         .slice(0, 4);
 }
 
-export function RelatedProperties({currentSlug, city, workerUrl}: RelatedPropertiesProps) {
+export function RelatedProperties({currentSlug, workerUrl}: RelatedPropertiesProps) {
     const {data: listings = [], isLoading, isError} = useQuery<Property[]>({
-        queryKey: ['related', city, currentSlug],
-        queryFn: () => fetchRelated(workerUrl, city, currentSlug),
+        queryKey: ['similar-properties', currentSlug],
+        queryFn: () => fetchRelated(workerUrl, currentSlug),
         staleTime: 1000 * 60 * 5,
     });
 
@@ -47,12 +48,9 @@ export function RelatedProperties({currentSlug, city, workerUrl}: RelatedPropert
             <div className="related-properties__header">
                 <h2 className="related-properties__title">
                     Guests who liked{' '}
-                    <em>{currentSlug.replace(/-/g, ' ')}</em>{' '}
+                    <span> <em className="tx_lettter_caps">{currentSlug.replace(/-/g, ' ')}</em>{' '}</span>
                     also liked:
                 </h2>
-                <a href="/listings" className="related-properties__cta">
-                    Search & Calendar →
-                </a>
             </div>
 
             <div className="related-properties__grid">

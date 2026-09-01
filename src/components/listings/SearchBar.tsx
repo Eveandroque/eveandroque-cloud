@@ -3,13 +3,13 @@ import type {FilterOption} from './types';
 
 interface SearchValues {
     rentalType: string | null;
-    searchArea: string;
+    searchAreas: string[];
     eventMaxCap: number | null;
 }
 
 interface SearchBarProps {
     rentalType: string | null;
-    selectedArea: string;
+    selectedAreas: string[];
     eventMaxCap: number | null;
     rentalTypeOptions: FilterOption[];
     searchAreaOptions: FilterOption[];
@@ -22,7 +22,7 @@ interface SearchBarProps {
 
 export function SearchBar({
                               rentalType,
-                              selectedArea,
+                              selectedAreas,
                               eventMaxCap,
                               rentalTypeOptions,
                               searchAreaOptions,
@@ -36,9 +36,9 @@ export function SearchBar({
 
     //Draft state
     const [draftType, setDraftType] = useState<string | null>(rentalType);
-    const [draftArea, setDraftArea] = useState<string>(selectedArea);
+    const [draftAreas, setDraftAreas] = useState<string[]>(selectedAreas);
     const [draftCap, setDraftCap] = useState<number | null>(eventMaxCap);
-    const [areaInput, setAreaInput] = useState<string>(selectedArea);
+    const [areaInput, setAreaInput] = useState<string>('');
 
     // dropdown open state
     const [typeOpen, setTypeOpen] = useState(false);
@@ -49,6 +49,18 @@ export function SearchBar({
     const typeRef = useRef<HTMLDivElement>(null);
     const locationRef = useRef<HTMLDivElement>(null);
     const guestRef = useRef<HTMLDivElement>(null);
+
+    useEffect(() => {
+        setDraftType(rentalType);
+    }, [rentalType]);
+
+    useEffect(() => {
+        setDraftAreas(selectedAreas);
+    }, [selectedAreas]);
+
+    useEffect(() => {
+        setDraftCap(eventMaxCap);
+    }, [eventMaxCap]);
 
     // Close dropdowns on the outside click
     useEffect(() => {
@@ -65,34 +77,35 @@ export function SearchBar({
         a.name.toLowerCase().includes(areaInput.toLowerCase())
     );
 
-    //Commit on Search click
+    const toggleDraftArea = (areaName: string) => {
+        setDraftAreas(current =>
+            current.includes(areaName)
+                ? current.filter(name => name !== areaName)
+                : [...current, areaName]
+        );
+    };
+
+    //Commit to Search click
     const handleSearch = () => {
         setTypeOpen(false);
         setLocationOpen(false);
         setGuestOpen(false);
-        onSearch({rentalType: draftType, searchArea: draftArea, eventMaxCap: draftCap});
+        onSearch({rentalType: draftType, searchAreas: draftAreas, eventMaxCap: draftCap});
     }
 
     //labels
-    const typeLabel = draftType ?? 'Event Type';
-    const locationLabel = draftArea || 'Location';
-    const guestLabel = draftCap ? `${draftCap}+ guests` : 'Group Size';
+    const typeLabel = draftType ?? 'Event / Film Type';
+    const locationLabel = draftAreas.length === 0
+        ? 'Location'
+        : draftAreas.length === 1
+            ? draftAreas[0]
+            : `${draftAreas.length} locations`;
+    const guestLabel = draftCap ? `${draftCap}+ guests` : 'Guest / Crew Count';
 
-    const isDirty = draftType !== rentalType || draftArea !== selectedArea || draftCap !== eventMaxCap;
+    const selectedAreasKey = selectedAreas.join('|');
+    const draftAreasKey = draftAreas.join('|');
 
-
-    // Sync external city changes (e.g. URL rehydration) back to local input
-    // useEffect(() => {
-    //     setLocationInput(selectedArea);
-    // }, [selectedArea]);
-    //
-    // const toggleType = (name: string) => {
-    //     const next = rentalTypes.includes(name)
-    //         ? rentalTypes.filter(t => t !== name)
-    //         : [...rentalTypes, name];
-    //     onRentalTypeChange(next);
-    // };
-
+    const isDirty = draftType !== rentalType || draftAreasKey !== selectedAreasKey || draftCap !== eventMaxCap;
 
     return (
         <div className="search-bar">
@@ -123,14 +136,14 @@ export function SearchBar({
                         )}
                         <div className="search-bar__type-grid">
                             {rentalTypeOptions.map(opt => (
-                                <label key={opt.id} className="search-bar__checkbox-row">
+                                <label key={opt.id} className="filter-checkbox search-bar__checkbox-row">
                                     <input
-                                        type="radio"
-                                        name="rentalType"
+                                        type="checkbox"
                                         checked={draftType === opt.name}
-                                        onChange={() => setDraftType(opt.name)}
+                                        onChange={() => setDraftType(draftType === opt.name ? null : opt.name)}
                                     />
-                                    <span>{opt.name}</span>
+                                    <span className="filter-checkbox__box"/>
+                                    <span className="filter-checkbox__label">{opt.name}</span>
                                 </label>
                             ))}
                         </div>
@@ -143,7 +156,7 @@ export function SearchBar({
             {/* ── Location ── */}
             <div className="search-bar__field" ref={locationRef}>
                 <button
-                    className={`search-bar__trigger${selectedArea ? ' has-value' : ''}`}
+                    className={`search-bar__trigger${selectedAreas.length > 0 ? ' has-value' : ''}`}
                     onClick={() => {
                         setLocationOpen(o => !o);
                         setTypeOpen(false);
@@ -164,31 +177,36 @@ export function SearchBar({
                             autoFocus
                         />
                         <div className="search-bar__location-list">
-                            {draftArea && (
+                            {draftAreas.length > 0 && (
                                 <button
                                     className="search-bar__location-option search-bar__location-option--clear"
                                     onClick={() => {
-                                        setDraftArea('');
+                                        setDraftAreas([]);
                                         setAreaInput('');
-                                        setLocationOpen(false);
+                                        // setLocationOpen(false);
                                     }}
                                 >
                                     Clear locations
                                 </button>
                             )}
-                            {filteredAreas.slice(0, 20).map(area => (
-                                <button
-                                    key={area.id}
-                                    className={`search-bar__location-option${selectedArea === area.name ? ' is-selected' : ''}`}
-                                    onClick={() => {
-                                        setDraftArea(area.name);
-                                        setAreaInput(area.name);
-                                        setLocationOpen(false);
-                                    }}
-                                >
-                                    {area.name}
-                                </button>
-                            ))}
+                            {filteredAreas.slice(0, 20).map(area => {
+                                const isSelected = draftAreas.includes(area.name);
+
+                                return (
+                                    <label
+                                        key={area.id}
+                                        className={`search-bar__location-option${isSelected ? ' is-selected' : ''} filter-checkbox`}
+                                    >
+                                        <input
+                                            type="checkbox"
+                                            checked={isSelected}
+                                            onChange={() => toggleDraftArea(area.name)}
+                                        />
+                                        <span className="filter-checkbox__box"></span>
+                                        <span>{area.name}</span>
+                                    </label>
+                                );
+                            })}
                             {filteredAreas.length === 0 && (
                                 <p className="search-bar__location-empty">No locations found</p>
                             )}
@@ -238,6 +256,14 @@ export function SearchBar({
                     </div>
                 )}
             </div>
+
+            {/*<input*/}
+            {/*    className="search-bar__keyword-input"*/}
+            {/*    type="text"*/}
+            {/*    placeholder="Search by keyword..."*/}
+            {/*    value={draftQ}*/}
+            {/*    onChange={e => setDraftQ(e.target.value)}*/}
+            {/*/>*/}
 
             {/* ── Search button ── */}
             <button className="search-bar__submit" onClick={handleSearch}>

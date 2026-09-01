@@ -7,7 +7,7 @@
  * behaves similarly. For vanilla Astro use 'nuqs/adapters/vanilla'.
  */
 
-import React, {useState, useCallback} from 'react';
+import React, {useState, useCallback, useEffect, useRef} from 'react';
 import {QueryClient, QueryClientProvider} from '@tanstack/react-query';
 import {NuqsAdapter} from 'nuqs/adapters/react';
 
@@ -39,6 +39,11 @@ interface ListingsAppProps {
 function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
     const [modalOpen, setModalOpen] = useState(false);
 
+    const [propertySearch, setPropertySearch] = useState('');
+
+    const listingsTopRef = useRef<HTMLDivElement>(null);
+    const previousPageRef = useRef<number | null>(null);
+
     const {
         filters,
         setFilters,
@@ -49,10 +54,41 @@ function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
         modalFilterCount,
     } = useFilters();
 
+    useEffect(() => {
+        setPropertySearch(filters.q);
+    }, [filters.q]);
+
     const {
         listings, total, currentPage, pageSize,
         hasMore, count, isLoading, isFetching, isError, isCountLoading,
     } = useListings(filters, {baseApiUrl, filtersApiUrl});
+
+    useEffect(() => {
+        if (previousPageRef.current === null) {
+            previousPageRef.current = currentPage;
+            return;
+        }
+
+        if (previousPageRef.current === currentPage) return;
+
+        previousPageRef.current = currentPage;
+
+        const activeElement = document.activeElement;
+        if (activeElement instanceof HTMLElement) {
+            activeElement.blur();
+        }
+
+        window.requestAnimationFrame(() => {
+            const targetTop = listingsTopRef.current
+                ? listingsTopRef.current.getBoundingClientRect().top + window.scrollY - 110
+                : 0;
+
+            window.scrollTo({
+                top: Math.max(targetTop, 0),
+                behavior: 'auto',
+            });
+        });
+    }, [currentPage]);
 
     const {data: filtersData} = useFiltersApi(filtersApiUrl);
 
@@ -61,19 +97,36 @@ function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
         [toggleArrayFilter]
     );
 
+    const handlePropertySearchSubmit = useCallback((event: React.FormEvent<HTMLFormElement>) => {
+        event.preventDefault();
+        setFilters({
+            q: propertySearch.trim(),
+            page: 1,
+        });
+    }, [propertySearch, setFilters]);
+
+    const handlePropertySearchClear = useCallback(() => {
+        setPropertySearch('');
+        setFilters({
+            q: '',
+            page: 1,
+        });
+        // setPropertySearchOpen(false);
+    }, [setFilters]);
+
     return (
         <div className="listings-page">
             <div className="listings-page__search">
                 <SearchBar
                     rentalType={filters.rentalTypes[0] ?? null}
-                    selectedArea={filters.searchAreas[0] ?? ''}
+                    selectedAreas={filters.searchAreas}
                     eventMaxCap={filters.eventMaxCap}
                     rentalTypeOptions={filtersData?.rentalTypes ?? []}
                     searchAreaOptions={filtersData?.searchAreas ?? []}
-                    onSearch={({rentalType, searchArea, eventMaxCap}) => {
+                    onSearch={({rentalType, searchAreas, eventMaxCap,}) => {
                         setFilters({
                             rentalTypes: rentalType ? [rentalType] : [],
-                            searchAreas: searchArea ? [searchArea] : [],
+                            searchAreas,
                             eventMaxCap,
                             page: 1,
                         });
@@ -81,7 +134,11 @@ function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
                 />
             </div>
 
+            {/*Horizontal line with */}
+            {/*<div className="listings-page__horizontal-line"></div>*/}
+
             <div className="listings-page__chips">
+                <p className="listing_paragraph">Quick filters</p>
                 <CategoryChips
                     options={filtersData?.generalFilters ?? []}
                     activeFilter={filters.generalFilters[0] ?? null}
@@ -96,15 +153,50 @@ function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
 
             {!isLoading && (
                 <div className="listings-page__meta">
-                    <p className="listings-page__count">
-                        {total.toLocaleString()} propert{total !== 1 ? 'ies' : 'y'}
-                    </p>
-                    {hasActiveFilters && (
-                        <button className="listings-page__clear-all" onClick={clearAll}>
-                            <ClearIcon/>
-                            Clear all filters
+                    <div className="listings-page__meta-left">
+                        <p className="listings-page__count">
+                            {total.toLocaleString()} propert{total !== 1 ? 'ies' : 'y'}
+                        </p>
+                        {hasActiveFilters && (
+                            <button className="listings-page__clear-all" onClick={clearAll}>
+                                <ClearIcon/>
+                                Clear all filters
+                            </button>
+                        )}
+                    </div>
+
+                    <form className="property-lookup" onSubmit={handlePropertySearchSubmit}>
+                        <input
+                            className="property-lookup__input"
+                            type="search"
+                            placeholder="Search property name or keyword"
+                            value={propertySearch}
+                            onChange={(event) => setPropertySearch(event.target.value)}
+                            autoFocus
+                        />
+                        {filters.q && (
+                            <button
+                                className="property-lookup__clear"
+                                type="button"
+                                aria-label="Clear property search"
+                                onClick={handlePropertySearchClear}
+                            >
+                                <ClearIcon/>
+                            </button>
+                        )}
+
+                        <button
+                            className="property-lookup__submit"
+                            type='submit'
+                            aria-label="Search specific property"
+                            // onClick={() => {
+                            //     if (!propertySearchOpen) setPropertySearchOpen(true);
+                            // }}
+                        >
+                            <SearchIcon/>
                         </button>
-                    )}
+                    </form>
+
                 </div>
             )}
 
@@ -149,5 +241,12 @@ export default function ListingsApp(props: ListingsAppProps) {
 const ClearIcon = () => (
     <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
         <path d="M2 2l10 10M12 2L2 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
+    </svg>
+);
+
+const SearchIcon = () => (
+    <svg width="15" height="15" viewBox="0 0 16 16" fill="none">
+        <circle cx="7" cy="7" r="4" stroke="currentColor" strokeWidth="1.5"/>
+        <path d="M10 10l3 3" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
     </svg>
 );

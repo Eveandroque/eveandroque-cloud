@@ -142,9 +142,19 @@
     min-width: 21.25rem;
 }
 
+/*Style the focus state*/
 .search-bar__guest-input {
-
+    outline: none;
+    height: 2.25rem;
+    width: 100%;
+    padding: 0 12px;
 }
+
+.search-bar__guest-clear {
+    font-size: 0.75rem;
+    margin-top: 0.5rem;
+}
+
 
 .search-bar__dropdown-label {
     font-size: 11px;
@@ -264,18 +274,19 @@
 
 /* ─── Category Chips ─────────────────────────────────────────────────────────── */
 .listings-page__chips {
-    margin-bottom: 36px;
+    margin-bottom: 24px;
 }
 
 .category-chips {
     display: flex;
-    justify-content: center;
     align-items: center;
     gap: 8px;
     flex-wrap: wrap;
 }
 
 .category-chips__list {
+    width: 100%;
+    justify-content: space-between;
     display: flex;
     flex-wrap: wrap;
     gap: 4px
@@ -339,12 +350,31 @@
     font-weight: 600;
 }
 
+@media (max-width: 1000px) {
+
+    .category-chips__list {
+        width: 100%;
+        justify-content: start;
+    }
+
+    .category-chips {
+        justify-content: flex-start;
+    }
+}
+
 /* ─── Results meta ───────────────────────────────────────────────────────────── */
 .listings-page__meta {
-    margin-bottom: 20px;
+    margin-bottom: 36px;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    gap: 1rem;
+}
+
+.listing_paragraph {
+    color: #999;
+    font-size: 12px;
+    margin-bottom: .35rem;
 }
 
 .listings-page__clear-all {
@@ -363,6 +393,94 @@
     font-size: 13px;
     color: #999;
     margin: 0;
+}
+
+.listings-page__meta-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    min-width: 0;
+}
+
+.listings-page__clear-all {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 8px;
+    font-size: 13px;
+    color: #111;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.listings-page__count {
+    font-size: 13px;
+    color: #999;
+    margin: 0;
+}
+
+.property-lookup {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 6px;
+    margin-left: auto;
+}
+
+.property-lookup__input {
+    width: min(260px, 42vw);
+    height: 36px;
+    padding: 0 12px;
+    border: 1px solid #d8d8d8;
+    border-radius: 999px;
+    font-size: 13px;
+    font-family: inherit;
+    color: #111;
+    outline: none;
+    transition: border-color 0.15s, box-shadow 0.15s;
+}
+
+.property-lookup__input::placeholder {
+    color: #999;
+}
+
+.property-lookup__input:focus {
+    border-color: #111;
+    box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.08);
+}
+
+.property-lookup__submit,
+.property-lookup__clear {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid #d8d8d8;
+    background: #fff;
+    color: #444;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: border-color 0.15s, color 0.15s, background 0.15s;
+}
+
+.property-lookup__submit:hover,
+.property-lookup__clear:hover {
+    border-color: #111;
+    color: #111;
+}
+
+.property-lookup__submit {
+    background: #111;
+    border-color: #111;
+    color: #fff;
+}
+
+.property-lookup__submit:hover {
+    background: #333;
+    border-color: #333;
+    color: #fff;
 }
 
 /* ─── Grid ───────────────────────────────────────────────────────────────────── */
@@ -839,6 +957,54 @@
 
     .listings-page {
         padding: 0 16px;
+    }
+
+    .listings-page__meta {
+        align-items: flex-start;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .listings-page__meta-left {
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .property-lookup {
+        width: 100%;
+    }
+
+    .property-lookup__input {
+        flex: 1;
+        width: auto;
+    }
+
+    /*Filter Searchbar*/
+    .search-bar {
+        flex-direction: column;
+    }
+
+    .search-bar__divider {
+        height: 1px;
+        width: 100%;
+    }
+
+    .search-bar__dropdown--location {
+        width: 100%;
+    }
+
+    .search-bar__field {
+        width: 100%;
+    }
+
+    .search-bar__submit {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .search-bar__dropdown--guests {
+        min-width: 15.25rem;
     }
 
     /*Filter Searchbar*/

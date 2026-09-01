@@ -1,6 +1,11 @@
 {
   "cloud": {
     "framework": "astro",
+    "entrypoint_path": "./index.js",
+    "deployment_type": "ssr",
+    "skip_no_bundle": false,
+    "contract_version": "1",
+    "framework_version": "5.17.2",
     "project_id": "1cf22703-3cec-4ddf-8245-6eed6b933928"
   },
   "devlink": {

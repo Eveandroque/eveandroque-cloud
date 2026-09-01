@@ -71,8 +71,8 @@ export function AuthModal() {
                         <div className="auth-modal__success">
                             <div className="auth-modal__success-icon">✉️</div>
                             <h3>Check your email</h3>
-                            <p style={{marginBottom: '20px'}}>Magic link sent to <strong>{email}</strong>. Click it to
-                                sign in.</p>
+                            <p style={{marginBottom: '20px'}}>Your OTP code has been sent to <strong>{email}</strong>
+                            </p>
                             <form onSubmit={handleVerifyOtp}>
                                 <input
                                     id="verify-otp"

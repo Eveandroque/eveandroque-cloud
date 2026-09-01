@@ -3,10 +3,14 @@
   "name": "astro",
   "main": "./dist/_worker.js/index.js",
   "compatibility_date": "2025-04-15",
-  "compatibility_flags": ["nodejs_compat"],
+  "compatibility_flags": [
+    "nodejs_compat"
+  ],
   "assets": {
     "binding": "ASSETS",
-    "directory": "./dist"
+    "directory": "./dist",
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "none"
   },
   "observability": {
     "enabled": true

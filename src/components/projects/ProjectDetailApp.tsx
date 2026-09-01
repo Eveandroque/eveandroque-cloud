@@ -25,7 +25,7 @@ export function ProjectDetailApp({projectId, baseApiUrl}: ProjectDetailAppProps)
 
     const project = projects.find((p) => p.id === projectId);
     const propertyIds = Array.from(projectProperties.get(projectId) ?? []);
-    console.log(projectProperties, propertyIds);
+    // console.log(projectProperties, propertyIds);
 
     useEffect(() => {
         if (authLoading || storeLoading) return;

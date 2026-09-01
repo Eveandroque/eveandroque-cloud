@@ -669,7 +669,7 @@ export function Footer({}) {
                                                                 "footer_bottom_nav-link"
                                                             )}
                                                             options={{
-                                                                href: "/",
+                                                                href: "https://www.eveandroque.com/",
                                                             }}
                                                         >
                                                             {"Home"}

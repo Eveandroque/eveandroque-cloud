@@ -5,8 +5,9 @@ import {Header} from "../../devlink/Header";
 import {Footer} from "../../devlink/Footer";
 import ListingsApp from "../components/ListingsApp.tsx";
 import {Navbar} from '../../devlink/Navbar';
-
 const workerUrl = import.meta.env.PUBLIC_WORKER_URL;
+
+export const prerender = false;
 ---
 
 <Layout>

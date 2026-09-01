@@ -61,7 +61,7 @@ export function Header({
                                     _activeStyleVariant
                                 )}
                                 options={{
-                                    href: "#",
+                                    href: "https://www.eveandroque.com/",
                                 }}
                             >
                                 <Image
@@ -133,7 +133,7 @@ export function Header({
                                                 _activeStyleVariant
                                             )}
                                             options={{
-                                                href: "/",
+                                                href: "https://www.eveandroque.com/",
                                             }}
                                         >
                                             {"Home"}

@@ -44,9 +44,9 @@ export function PropertyMap({address, mapboxToken}: PropertyMapProps) {
 
             const map = new mapboxgl.Map({
                 container: mapRef.current!,
-                style: 'mapbox://styles/mapbox/light-v11',
+                style: 'mapbox://styles/mapbox/streets-v12',
                 center: coords,
-                zoom: 12,
+                zoom: 12.5,
                 interactive: false,
             });
 
@@ -69,14 +69,14 @@ export function PropertyMap({address, mapboxToken}: PropertyMapProps) {
                     paint: {
                         'circle-radius': {
                             stops: [
-                                [10, 40],
-                                [13, 120],
-                                [15, 260],
+                                [10, 22],
+                                [13, 62],
+                                [15, 140],
                             ],
                             base: 2,
                         },
-                        'circle-color': '#888888',
-                        'circle-opacity': 0.15,
+                        'circle-color': '#C08A4D',
+                        'circle-opacity': 0.22,
                     },
                 });
 
@@ -88,15 +88,15 @@ export function PropertyMap({address, mapboxToken}: PropertyMapProps) {
                     paint: {
                         'circle-radius': {
                             stops: [
-                                [10, 40],
-                                [13, 120],
-                                [15, 260],
+                                [10, 22],
+                                [13, 62],
+                                [15, 140],
                             ],
                             base: 2,
                         },
                         'circle-color': 'transparent',
                         'circle-stroke-width': 1,
-                        'circle-stroke-color': '#666666',
+                        'circle-stroke-color': '#9A6330',
                         'circle-stroke-opacity': 0.5,
                     },
                 });

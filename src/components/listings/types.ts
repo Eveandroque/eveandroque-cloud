@@ -4,6 +4,7 @@ export interface FilterState {
     // Search bar
     rentalTypes: string[];    // category chips → ?rentalTypes=Film,Event
     eventMaxCap: number | null; // group size → ?maxGuests=50
+    q: string;
     // Modal groups (all by name)
     generalFilters: string[];
     styles: string[];
@@ -22,6 +23,7 @@ export interface FilterState {
 export const EMPTY_FILTERS: FilterState = {
     rentalTypes: [],
     eventMaxCap: null,
+    q: '',
     generalFilters: [],
     styles: [],
     searchAreas: [],
@@ -64,6 +66,7 @@ export interface Property {
     bedrooms: number;
     bathrooms: number;
     maxGuests: number | null;
+    sqft: number | null;
 }
 
 export interface ListingsApiResponse {
