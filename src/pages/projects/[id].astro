@@ -6,7 +6,7 @@ const {id} = Astro.params;
 const workerUrl = import.meta.env.PUBLIC_WORKER_URL;
 ---
 
-<Layout>
+<Layout title="Project Details | Eve & Roque" noindex={true}>
     <div class="content-area">
         <ProjectDetailApp client:load projectId={id!} baseApiUrl={workerUrl}/>
     </div>

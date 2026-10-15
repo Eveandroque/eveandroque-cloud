@@ -7,8 +7,7 @@
 
 import Layout from '../layouts/Layout.astro';
 import {PropertyApp} from '../components/propertyDetails/Propertyapp';
-
-import {getProperty, getAllSlugs} from '../lib/api';
+import {getProperty} from '../lib/api';
 
 const {slug} = Astro.params;
 
@@ -20,13 +19,104 @@ const workerUrl = import.meta.env.PUBLIC_WORKER_URL as string;
 const mapboxToken = import.meta.env.PUBLIC_MAPBOX_TOKEN as string;
 const filloutUrl = import.meta.env.PUBLIC_FILLOUT_URL as string;
 
-const ogDescription = `${property.name} in ${property.city}. ${property.bedrooms} beds, ${property.bathrooms} baths${property.eventMaxCap ? `, up to ${property.eventMaxCap} guests for events` : ''}.`;
+const siteUrl = Astro.site ? Astro.site.origin : "https://www.eveandroque.com";
+const canonicalUrl = new URL(`/listings/${property.slug}`, siteUrl).href;
+
+const pageTitle = `${property.name} - Luxury Location in ${property.city} | Eve & Roque`;
+
+const fallbackDesc = `${property.name} in ${property.city}. ${property.bedrooms} beds, ${property.bathrooms} baths${property.sqft ? `, ${property.sqft.toLocaleString()} sqft` : ''}${property.filmMaxCap ? `, up to ${property.filmMaxCap} crew` : ''}${property.eventMaxCap ? `, up to ${property.eventMaxCap} event guests` : ''}. Available for film, photoshoots & events.`;
+const rawDesc = property.description || property.descriptionELH || fallbackDesc;
+const pageDescription = rawDesc.length > 160 ? `${rawDesc.slice(0, 157)}...` : rawDesc;
+
+const ogImage = property.thumbnail || (property.images?.[0]?.url);
+
+// Schema.org Structured Data
+const propertyJsonLd: Record<string, any> = {
+    "@context": "https://schema.org",
+    "@type": ["Place", "RealEstateListing", "Accommodation"],
+    "name": property.name,
+    "description": rawDesc,
+    "url": canonicalUrl,
+    "image": property.images?.length ? property.images.map(img => img.url) : (property.thumbnail ? [property.thumbnail] : []),
+    "address": {
+        "@type": "PostalAddress",
+        "addressLocality": property.city,
+        "addressRegion": "CA",
+        "addressCountry": "US"
+    },
+    "numberOfRooms": property.bedrooms,
+    "numberOfBedrooms": property.bedrooms,
+    "numberOfBathroomsTotal": property.bathrooms
+};
+
+if (property.sqft) {
+    propertyJsonLd["floorSize"] = {
+        "@type": "QuantitativeValue",
+        "value": property.sqft,
+        "unitCode": "FTK"
+    };
+}
+
+const allAmenities = [
+    ...(property.featuredAmenities || []),
+    ...(property.outdoorFeatures || []),
+    ...(property.indoorFeatures || []),
+    ...(property.poolSpa || []),
+    ...(property.parkingTypes || [])
+];
+
+if (allAmenities.length > 0) {
+    propertyJsonLd["amenityFeature"] = allAmenities.map(amenity => ({
+        "@type": "LocationFeatureSpecification",
+        "name": amenity,
+        "value": true
+    }));
+}
+
+const startingRate = property.startingFilmRate || property.startingEventRate || property.startingNightlyRate;
+if (startingRate) {
+    propertyJsonLd["offers"] = {
+        "@type": "AggregateOffer",
+        "priceCurrency": "USD",
+        "lowPrice": startingRate,
+        "availability": "https://schema.org/InStock",
+        "url": canonicalUrl
+    };
+}
+
+const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${siteUrl}/`
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Listings",
+            "item": `${siteUrl}/listings`
+        },
+        {
+            "@type": "ListItem",
+            "position": 3,
+            "name": property.name,
+            "item": canonicalUrl
+        }
+    ]
+};
 ---
 
 <Layout
-        title={`${property.name} | Eve & Roque`}
-        description={property.description?.slice(0, 160) ?? ogDescription}
-        ogImage={property.thumbnail}
+        title={pageTitle}
+        description={pageDescription}
+        ogImage={ogImage}
+        ogType="article"
+        canonicalUrl={canonicalUrl}
+        jsonLd={[propertyJsonLd, breadcrumbJsonLd]}
 >
     <div class="content-area">
         <!-- Back nav — server rendered, instant -->

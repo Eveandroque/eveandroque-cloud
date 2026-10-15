@@ -1,30 +1,102 @@
 ---
 import Layout from '../layouts/Layout.astro';
-// import {Section, Container, Block, Link} from '.a./../devlink/_Builtin/index.js';
-import {Header} from "../../devlink/Header";
-import {Footer} from "../../devlink/Footer";
 import ListingsApp from "../components/ListingsApp.tsx";
-import {Navbar} from '../../devlink/Navbar';
+import {getListings} from "../lib/api";
+
 const workerUrl = import.meta.env.PUBLIC_WORKER_URL;
 
 export const prerender = false;
+
+const siteUrl = Astro.site ? Astro.site.origin : "https://www.eveandroque.com";
+const canonicalUrl = new URL('/listings', siteUrl).href;
+
+const pageTitle = "Luxury Film & Event Locations | Curated Property Catalog | Eve & Roque";
+const pageDescription = "Explore our curated portfolio of luxury estates, modern architectural homes, and exclusive venues for film productions, photoshoots, brand activations, and private events.";
+
+// Schema.org Structured Data
+const collectionJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": "Luxury Locations for Film, Events & Photoshoots",
+    "description": pageDescription,
+    "url": canonicalUrl,
+    "publisher": {
+        "@type": "Organization",
+        "name": "Eve & Roque",
+        "url": siteUrl
+    }
+};
+
+const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+        {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": `${siteUrl}/`
+        },
+        {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Listings",
+            "item": canonicalUrl
+        }
+    ]
+};
+
+// SSR crawlable links fallback for Googlebot and search crawlers
+let initialListings: { slug: string; name: string; city: string }[] = [];
+try {
+    const data = await getListings('');
+    if (data && Array.isArray(data.listings)) {
+        initialListings = data.listings;
+    }
+} catch (e) {
+    // Graceful fallback if Worker is unreachable during local build
+}
 ---
 
-<Layout>
+<Layout
+        title={pageTitle}
+        description={pageDescription}
+        ogImage="/listings/listing-img.webp"
+        ogType="website"
+        canonicalUrl={canonicalUrl}
+        jsonLd={[collectionJsonLd, breadcrumbJsonLd]}
+>
     <div>
         <div class="content-area">
             <div class="listing-hero">
                 <div class="hero-imgwrap">
                     <div class="hero-img-overlay"></div>
-                    <img src="/listings/listing-img.webp" alt="Hero Image" class="hero-image" width="100%" height="100%"
+                    <img src="/listings/listing-img.webp" alt="Luxury properties and locations" class="hero-image" width="100%" height="100%"
                          fetchpriority="high" loading="eager">
                 </div>
                 <div class="hero-content">
                     <h1>Find Your Dream Property</h1>
                     <p>Explore a curated selection of stunning properties that cater to every taste and budget. Your
-                        perfect getaway or investment opportunity awaits!</p>
+                        perfect getaway or production location awaits!</p>
                 </div>
             </div>
+
+            {/* Semantic directory links for Googlebot crawler discovery */}
+            {initialListings.length > 0 && (
+                <nav class="sr-only" aria-label="All Property Locations">
+                    <h2>Featured Film & Event Locations</h2>
+                    <ul>
+                        {initialListings.map((p) => (
+                            <li>
+                                <a href={`/listings/${p.slug}`}>
+                                    {p.name} - {p.city}
+                                </a>
+                            </li>
+                        ))}
+                    </ul>
+                </nav>
+            )}
+
             <ListingsApp client:load
                          baseApiUrl={workerUrl}
                          filtersApiUrl={`${workerUrl}/api/filters`}
@@ -34,6 +106,17 @@ export const prerender = false;
 </Layout>
 
 <style>
+    .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+    }
 
     .listing-hero {
         max-width: 85rem;

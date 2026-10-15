@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+Allow: /listings/
+Disallow: /listings/projects/
+Disallow: /projects/
+
+Sitemap: https://www.eveandroque.com/listings/sitemap.xml

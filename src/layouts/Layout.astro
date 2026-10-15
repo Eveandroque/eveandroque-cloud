@@ -1,19 +1,101 @@
 ---
 import "../../devlink/css/global.css"; // Webflow Styles
 import {SiteShell} from "../components/SiteShell.tsx";
+
+export interface Props {
+    title?: string;
+    description?: string;
+    ogImage?: string;
+    ogType?: string;
+    canonicalUrl?: string;
+    noindex?: boolean;
+    jsonLd?: Record<string, any> | Record<string, any>[];
+}
+
+const {
+    title = "Eve & Roque | Luxury Locations for Film, Events & Photoshoots",
+    description = "Explore exclusive luxury properties and breathtaking locations for film productions, photoshoots, brand activations, and private events with Eve & Roque.",
+    ogImage,
+    ogType = "website",
+    canonicalUrl,
+    noindex = false,
+    jsonLd,
+} = Astro.props;
+
+const siteUrl = Astro.site ? Astro.site.origin : "https://www.eveandroque.com";
+const canonical = canonicalUrl || new URL(Astro.url.pathname, siteUrl).href;
+
+// Resolve Open Graph image to absolute URL
+let resolvedOgImage = ogImage;
+if (!resolvedOgImage) {
+    resolvedOgImage = new URL(`${import.meta.env.BASE_URL || '/listings'}/listing-img.webp`, siteUrl).href;
+} else if (!resolvedOgImage.startsWith("http://") && !resolvedOgImage.startsWith("https://")) {
+    resolvedOgImage = new URL(resolvedOgImage.startsWith("/") ? resolvedOgImage : `/${resolvedOgImage}`, siteUrl).href;
+}
+
+const robotsContent = noindex
+    ? "noindex, nofollow"
+    : "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1";
+
+const defaultOrgSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Eve & Roque",
+    "url": "https://www.eveandroque.com",
+    "logo": new URL(`${import.meta.env.BASE_URL || '/listings'}/eveandroque-fav.png`, siteUrl).href,
+    "description": "Curated luxury properties and stunning locations for film, events, and photoshoots."
+};
 ---
 
 <!doctype html>
 <html lang="en">
 <head>
     <meta charset="UTF-8"/>
-    <meta name="viewport" content="width=device-width"/>
-    <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}/eveandroque-fav.png`}/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="icon" type="image/png" href={`${import.meta.env.BASE_URL}/eveandroque-fav.png`}/>
+    <link rel="apple-touch-icon" href={`${import.meta.env.BASE_URL}/eveandroque-fav.png`}/>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet">
     <meta name="generator" content={Astro.generator}/>
-    <title> Eve & Roque | Luxury Locations for Film, Events & Photoshoots </title>
+
+    <!-- Primary Meta Tags -->
+    <title>{title}</title>
+    <meta name="title" content={title}/>
+    <meta name="description" content={description}/>
+    <link rel="canonical" href={canonical}/>
+    <meta name="robots" content={robotsContent}/>
+    <meta name="googlebot" content={robotsContent}/>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:site_name" content="Eve & Roque"/>
+    <meta property="og:type" content={ogType}/>
+    <meta property="og:url" content={canonical}/>
+    <meta property="og:title" content={title}/>
+    <meta property="og:description" content={description}/>
+    <meta property="og:image" content={resolvedOgImage}/>
+    <meta property="og:locale" content="en_US"/>
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image"/>
+    <meta name="twitter:url" content={canonical}/>
+    <meta name="twitter:title" content={title}/>
+    <meta name="twitter:description" content={description}/>
+    <meta name="twitter:image" content={resolvedOgImage}/>
+
+    <!-- Default Organization Structured Data -->
+    <script type="application/ld+json" set:html={JSON.stringify(defaultOrgSchema)}/>
+
+    <!-- Custom Page Structured Data -->
+    {jsonLd && (
+        Array.isArray(jsonLd) ? (
+            jsonLd.map((schema) => (
+                <script type="application/ld+json" set:html={JSON.stringify(schema)}/>
+            ))
+        ) : (
+            <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}/>
+        )
+    )}
 </head>
 <body>
 <SiteShell client:load>
