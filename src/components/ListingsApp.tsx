@@ -37,6 +37,7 @@ interface ListingsAppProps {
 }
 
 function ListingsInner({baseApiUrl, filtersApiUrl}: ListingsAppProps) {
+
     const [modalOpen, setModalOpen] = useState(false);
 
     const [propertySearch, setPropertySearch] = useState('');

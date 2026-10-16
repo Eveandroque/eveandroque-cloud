@@ -100,7 +100,8 @@ export interface ListingsResponse {
     listings: Property[];
     total: number;
     page: number;
-    perPage: number;
+    pageSize: number;
+    hasMore: boolean;
 }
 
 export interface CountResponse {
@@ -139,10 +140,51 @@ export async function getProperty(slug: string): Promise<PropertyDetail | null> 
 }
 
 export async function getAllSlugs(): Promise<string[]> {
-    const res = await fetch(`${WORKER_URL}/api/listings`);
-    if (!res.ok) return [];
-    const data: Property[] = await res.json();
-    return data.map(p => p.slug).filter(Boolean);
+    try {
+        const slugs = new Set<string>();
+        let page = 1;
+        let hasMore = true;
+        const maxPages = 50;
+
+        while (hasMore && page <= maxPages) {
+            const res = await fetch(`${WORKER_URL}/api/listings?page=${page}&pageSize=100`);
+            if (!res.ok) {
+                // If query param format fails, try base endpoint once
+                if (page === 1) {
+                    const fallbackRes = await fetch(`${WORKER_URL}/api/listings`);
+                    if (fallbackRes.ok) {
+                        const fallbackData = await fallbackRes.json();
+                        const list: Property[] = Array.isArray(fallbackData)
+                            ? fallbackData
+                            : (fallbackData?.listings ?? []);
+                        return list.map(p => p.slug).filter(Boolean);
+                    }
+                }
+                break;
+            }
+
+            const data: ListingsResponse | Property[] = await res.json();
+            const list: Property[] = Array.isArray(data) ? data : (data?.listings ?? []);
+
+            let addedCount = 0;
+            for (const item of list) {
+                if (item?.slug && !slugs.has(item.slug)) {
+                    slugs.add(item.slug);
+                    addedCount++;
+                }
+            }
+
+            if (Array.isArray(data) || !data?.hasMore || addedCount === 0) {
+                hasMore = false;
+            } else {
+                page++;
+            }
+        }
+
+        return Array.from(slugs);
+    } catch {
+        return [];
+    }
 }
 
 export async function getFavProperties(propertyIds: string[]): Promise<PropertyDetail[]> {
